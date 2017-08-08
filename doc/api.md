@@ -30,14 +30,17 @@ Digital input read
 Return the value of the digital input. `pin` is the digital input pin number and it's an integer between 1 and 16. The returning value is either `0` or `1`.
 
 ```bash
-curl "http://127.0.0.1/api/di/2/read"
+curl -s "http://127.0.0.1/api/di/2/read"
 {
-  "action": "read", 
-  "pin": 2, 
-  "status": "OK", 
-  "type": "di", 
+  "action": "read",
+  "pin": 2,
+  "status": "OK",
+  "type": "di",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/di/2/read" | jq .value
+0
 ```
 
 Digital output read
@@ -49,14 +52,17 @@ Digital output read
 Return the value of the digital output. `pin` is the digital output pin number and it's an integer between 1 and 12. The returning value is either `0` or `1`.
 
 ```bash
-curl "http://127.0.0.1/api/do/8/read"
+curl -s "http://127.0.0.1/api/do/8/read"
 {
-  "action": "read", 
-  "pin": 8, 
-  "status": "OK", 
-  "type": "do", 
+  "action": "read",
+  "pin": 8,
+  "status": "OK",
+  "type": "do",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/do/8/read" | jq .value
+0
 ```
 
 Digital output set
@@ -68,12 +74,12 @@ Digital output set
 Set the digital output. `pin` is the digital output pin number and it's an integer between 1 and 12.
 
 ```bash
-curl "http://127.0.0.1/api/do/8/set" 
+curl -s "http://127.0.0.1/api/do/8/set"
 {
-  "action": "set", 
-  "pin": 8, 
-  "status": "OK", 
-  "type": "do", 
+  "action": "set",
+  "pin": 8,
+  "status": "OK",
+  "type": "do",
   "value": 1
 }
 ```
@@ -87,12 +93,12 @@ Digital output reset
 Reset the digital output. `pin` is the digital output pin number and it's an integer between 1 and 12.
 
 ```bash
-curl "http://127.0.0.1/api/do/8/reset"
+curl -s "http://127.0.0.1/api/do/8/reset"
 {
-  "action": "reset", 
-  "pin": 8, 
-  "status": "OK", 
-  "type": "do", 
+  "action": "reset",
+  "pin": 8,
+  "status": "OK",
+  "type": "do",
   "value": 0
 }
 ```
@@ -106,12 +112,12 @@ Digital output write
 Write to the digital output. `pin` is the digital output pin number and it's an integer between 1 and 12. `val` is either `0` or `1`.
 
 ```bash
-curl "http://127.0.0.1/api/do/3/write?val=1"
+curl -s "http://127.0.0.1/api/do/3/write?val=1"
 {
-  "action": "write", 
-  "pin": 3, 
-  "status": "OK", 
-  "type": "do", 
+  "action": "write",
+  "pin": 3,
+  "status": "OK",
+  "type": "do",
   "value": 1
 }
 ```
@@ -125,14 +131,17 @@ Relay output read
 Return the value of the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16. The returning value is either `0` or `1`.
 
 ```bash
-curl "http://127.0.0.1/api/ro/14/read"     
+curl -s "http://127.0.0.1/api/ro/14/read"
 {
-  "action": "read", 
-  "pin": 14, 
-  "status": "OK", 
-  "type": "ro", 
+  "action": "read",
+  "pin": 14,
+  "status": "OK",
+  "type": "ro",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/ro/14/read" | jq .value
+0
 ```
 
 Relay output set
@@ -144,12 +153,12 @@ Relay output set
 Set the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16.
 
 ```bash
-curl "http://127.0.0.1/api/ro/14/set" 
+curl -s "http://127.0.0.1/api/ro/14/set"
 {
-  "action": "set", 
-  "pin": 14, 
-  "status": "OK", 
-  "type": "ro", 
+  "action": "set",
+  "pin": 14,
+  "status": "OK",
+  "type": "ro",
   "value": 1
 }
 ```
@@ -163,11 +172,11 @@ Relay output reset
 Reset the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16.
 
 ```bash
-curl "http://127.0.0.1/api/ro/14/reset"
+curl -s "http://127.0.0.1/api/ro/14/reset"
 {
-  "action": "reset", 
-  "pin": 14, 
-  "status": "OK", 
+  "action": "reset",
+  "pin": 14,
+  "status": "OK",
   "type": "ro",
   "value": 0
 }
@@ -182,12 +191,12 @@ Relay output write
 Write to the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16. `val` is either `0` or `1`.
 
 ```bash
-curl "http://127.0.0.1/api/ro/14/write?val=1"
+curl -s "http://127.0.0.1/api/ro/14/write?val=1"
 {
-  "action": "write", 
-  "pin": 14, 
-  "status": "OK", 
-  "type": "ro", 
+  "action": "write",
+  "pin": 14,
+  "status": "OK",
+  "type": "ro",
   "value": 1
 }
 ```
@@ -201,14 +210,17 @@ Analog input read
 Return the value of the analog input. `pin` is the analog input pin number and it's an integer between 1 and 4. The returning value is an integer between 1 and 4095.
 
 ```bash
-curl "http://127.0.0.1/api/ai/2/read"       
+curl -s "http://127.0.0.1/api/ai/2/read"
 {
-  "action": "read", 
-  "pin": 2, 
-  "status": "OK", 
-  "type": "ai", 
+  "action": "read",
+  "pin": 2,
+  "status": "OK",
+  "type": "ai",
   "value": 8
 }
+
+curl -s "http://127.0.0.1/api/ai/2/read" | jq .value
+8
 ```
 
 Analog output read
@@ -220,14 +232,17 @@ Analog output read
 Return the value of the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. The returning value is an integer between 1 and 4095.
 
 ```bash
-curl "http://127.0.0.1/api/ao/2/read"
+curl -s "http://127.0.0.1/api/ao/2/read"
 {
-  "action": "read", 
-  "pin": 2, 
-  "status": "OK", 
-  "type": "ao", 
+  "action": "read",
+  "pin": 2,
+  "status": "OK",
+  "type": "ao",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/ao/2/read" | jq .value
+0
 ```
 
 Analog output write
@@ -239,12 +254,12 @@ Analog output write
 Write to the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. `val` is an integer between 1 and 4095.
 
 ```bash
-curl "http://127.0.0.1/api/ao/2/write?val=500"
+curl -s "http://127.0.0.1/api/ao/2/write?val=500"
 {
-  "action": "write", 
-  "pin": 2, 
-  "status": "OK", 
-  "type": "ao", 
+  "action": "write",
+  "pin": 2,
+  "status": "OK",
+  "type": "ao",
   "value": 500
 }
 ```
@@ -258,13 +273,16 @@ Temperature read
 Return the temperature value in Celsius.
 
 ```bash
-curl "http://127.0.0.1/api/temperature/read"  
+curl -s "http://127.0.0.1/api/temperature/read"
 {
-  "action": "read", 
-  "status": "OK", 
-  "type": "temperature", 
+  "action": "read",
+  "status": "OK",
+  "type": "temperature",
   "value": 34.5
 }
+
+curl -s "http://127.0.0.1/api/temperature/read" | jq .value
+34.5
 ```
 
 Status
@@ -276,63 +294,91 @@ Status
 Return the values of all digital and analog I/O and the temperature.
 
 ```bash
-curl "http://127.0.0.1/api/status"
+curl -s "http://127.0.0.1/api/status"
 {
-  "action": "status", 
-  "status": "OK", 
+  "action": "status",
+  "status": "OK",
   "value": {
     "ai": {
-      "1": 0, 
-      "2": 0, 
-      "3": 0, 
+      "1": 0,
+      "2": 0,
+      "3": 0,
       "4": 0
-    }, 
+    },
     "ao": {
-      "1": 0, 
-      "2": 500, 
-      "3": 0, 
+      "1": 0,
+      "2": 500,
+      "3": 0,
       "4": 0
-    }, 
+    },
     "di": {
-      "1": 0, 
-      "2": 0, 
-      "3": 0, 
-      "4": 0, 
-      "5": 0, 
-      "6": 0, 
-      "7": 0, 
-      "8": 0, 
-      "9": 0, 
-      "10": 0, 
-      "11": 0, 
-      "12": 0, 
-      "13": 0, 
-      "14": 0, 
-      "15": 0, 
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
       "16": 0
-    }, 
+    },
     "do": {
-      "1": 0, 
-      "2": 0, 
-      "3": 1, 
-      "4": 0, 
-      "5": 0, 
-      "6": 0, 
-      "7": 1, 
-      "8": 0, 
-      "9": 0, 
-      "10": 0, 
-      "11": 0, 
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 1,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
       "12": 0
-    }, 
+    },
     "ro": {
-      "13": 0, 
-      "14": 1, 
-      "15": 0, 
+      "13": 0,
+      "14": 1,
+      "15": 0,
       "16": 0
-    }, 
+    },
     "temperature": 35.75
   }
+}
+
+curl -s "http://127.0.0.1/api/status" | jq .value.ro
+{
+  "13": 0,
+  "14": 0,
+  "15": 0,
+  "16": 0
+}
+
+curl -s "http://127.0.0.1/api/status" | jq .value.di
+{
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0,
+  "6": 0,
+  "7": 0,
+  "8": 0,
+  "9": 0,
+  "10": 0,
+  "11": 0,
+  "12": 0,
+  "13": 0,
+  "14": 0,
+  "15": 0,
+  "16": 0
 }
 ```
 
@@ -345,10 +391,10 @@ Reset
 Reset all digital and analog outputs.
 
 ```bash
-curl "http://127.0.0.1/api/reset" 
+curl -s "http://127.0.0.1/api/reset"
 {
-  "action": "reset", 
-  "status": "OK", 
+  "action": "reset",
+  "status": "OK",
   "value": null
 }
 ```
