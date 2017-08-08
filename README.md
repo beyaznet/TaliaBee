@@ -34,7 +34,16 @@ Interfaces
 Coming soon.
 
 ### Application programming interface
+TaliaBee provides an API for developers. The developers can monitor and control TaliaBee's I/O through API using their favorite programming languages. Therefore, you don't need to know a specific programming language to use TaliaBee. You can communicate through API even without writing any code.
+
+Using `curl` to set the relay output #14
+```bash
+curl -s "http://127.0.0.1/api/ro/14/set"
+```
+
 Please see the [API documentation](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md) for common usages.
 
 ### Python interface
-Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) page for common usages.
+TaliaBee provides a Python interface for Pythonistas too. [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) can be used to monitor and to control the I/O pins of the TaliaBee box through API.
+
+Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) project page for common usages.
