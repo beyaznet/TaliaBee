@@ -179,7 +179,7 @@ Relay output write
 /api/ro/<int:pin>/write?val=<int:val>
 ```
 
-Write to the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16. `value` is either `0` or `1`.
+Write to the relay output. `pin` is the relay output pin number and it's an integer between 13 and 16. `val` is either `0` or `1`.
 
 ```bash
 curl "http://127.0.0.1/api/ro/14/write?val=1"
@@ -236,7 +236,7 @@ Analog output write
 /api/ao/<int:pin>/write?val=<int:val>
 ```
 
-Write to the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. `value` is an integer between 1 and 4095.
+Write to the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. `val` is an integer between 1 and 4095.
 
 ```bash
 curl "http://127.0.0.1/api/ao/2/write?val=500"
