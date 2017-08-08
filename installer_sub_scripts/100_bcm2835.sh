@@ -13,7 +13,7 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/000_source
 cd $BASEDIR/$GIT_LOCAL_DIR/component/bcm2835
 
 echo
-echo "------------------------ BCM 2835 -------------------------"
+echo "------------------------- BCM 2835 -------------------------"
 
 # -----------------------------------------------------------------------------
 # BCM 2835

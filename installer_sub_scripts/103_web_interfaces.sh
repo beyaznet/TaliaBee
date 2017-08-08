@@ -13,7 +13,7 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/000_source
 cd $BASEDIR/$GIT_LOCAL_DIR/component/web_interfaces
 
 echo
-echo "--------------------- WEB INTERFACES ----------------------"
+echo "---------------------- WEB INTERFACES ----------------------"
 
 # -----------------------------------------------------------------------------
 # PACKAGES

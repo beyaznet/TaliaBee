@@ -13,7 +13,7 @@ source $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts/000_source
 cd $BASEDIR/$GIT_LOCAL_DIR/installer_sub_scripts
 
 echo
-echo "-------------------- TaliaBeeIO --------------------"
+echo "------------------------ TaliaBeeIO ------------------------"
 
 # -----------------------------------------------------------------------------
 # TALIABEEIO
