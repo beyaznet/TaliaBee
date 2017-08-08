@@ -418,4 +418,7 @@ curl -s "http://127.0.0.1/api/reset"
   "status": "OK",
   "value": null
 }
+
+curl -s "http://127.0.0.1/api/reset" | jq .status
+"OK"
 ```
