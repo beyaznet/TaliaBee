@@ -33,5 +33,6 @@ Interfaces
 ### Web user interface
 
 ### Application programming interface
+[API](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md)
 
 ### Python interface
