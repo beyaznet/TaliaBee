@@ -8,6 +8,10 @@ Table of contents
 - [About](#about)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Interfaces](#interfaces)
+    - [Web user interface](#web-user-interface)
+    - [Application programming interface (API)](#application-programming-interface)
+    - [Python interface](#python-interface)
 
 Requirements
 ============
@@ -22,3 +26,12 @@ Installation
 wget https://raw.githubusercontent.com/beyaznet/TaliaBee/master/installer/install.sh
 sudo bash install.sh
 ```
+
+Interfaces
+==========
+
+### Web user interface
+
+### Application programming interface
+
+### Python interface
