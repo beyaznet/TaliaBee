@@ -31,24 +31,24 @@ sudo python3 run.py
 
 ### How to use
 
-The interface contains 6 endpoints
+The interface contains 14 endpoints
 
-- `/api/ai/<int:pin>/read`: This endpoint reads values from Analog Inputs.
+- `/api/ai/<int:pin>/read`: This endpoint reads Analog Inputs' values.
 
 - `/api/ao/<int:pin>/write`: This endpoint writes to Analog Outputs.
-- `/api/ao/<int:pin>/read`: This endpoint reads values from Analog Outputs.
-- `/api/ao/<int:pin>/set`: This endpoint writes '1' values from Analog Outputs.
-- `/api/ao/<int:pin>/reset`: This endpoint writes '0' values from Analog Outputs.
+- `/api/ao/<int:pin>/read`: This endpoint reads Analog Outputs' values.
+
+- `/api/di/<int:pin>/read`: This endpoint reads Digital Inputs' values.
 
 - `/api/do/<int:pin>/write`: This endpoint writes to Digital Outputs.
-- `/api/do/<int:pin>/read`: This endpoint reads values from Digital Outputs.
-- `/api/do/<int:pin>/set`: This endpoint writes '1' values from Digital Outputs.
-- `/api/do/<int:pin>/reset`: This endpoint writes '0' values from Digital Outputs.
+- `/api/do/<int:pin>/read`: This endpoint reads Digital Outputs' values.
+- `/api/do/<int:pin>/set`: This endpoint writes `1` to a Digital Output.
+- `/api/do/<int:pin>/reset`: This endpoint writes `0` to a Digital Output.
 
-- `/api/ro/<int:pin>/read`: This endpoint reads values from Relay Outputs.
-- `/api/ro/<int:pin>/write`: This endpoint writes to Relay Outputs.
-- `/api/ro/<int:pin>/set`: This endpoint writes '1' to Relay Outputs.
-- `/api/ro/<int:pin>/reset`: This endpoint writes '0' to Relay Outputs.
+- `/api/ro/<int:pin>/read`: This endpoint reads Relay Outputs' values.
+- `/api/ro/<int:pin>/write`: This endpoint writes to a Relay Output.
+- `/api/ro/<int:pin>/set`: This endpoint writes `1` to a Relay Output.
+- `/api/ro/<int:pin>/reset`: This endpoint writes `0` to a Relay Output.
 
 - `/api/status`: This endpoint reads everything.
 - `/api/reset`: This endpoint writes '0' to all Outputs.
@@ -68,22 +68,62 @@ These endpoints accepts the parameters below:
 Assume that your RaspberryPi's IP address is `192.168.1.23` and you're running the web interface with the port `5000`
 
 
-Writing `0` to Digital Output `1`
+- Read Analog Input 1 (`AI1`)
 
-`curl "192.168.1.23:5000/api/do/1/write?val=0"`
+  `curl "localhost:5000/api/ai/1/read"`
 
-Reading from Digital Input 3
+- Write `2049` to Analog Output 1 (`AO1`)
 
-`curl "192.168.1.23:5000/api/di/3/write"`
+  `curl "localhost:5000/api/ao/1/write?val=2049"`
 
-Reading from Analog Input 2
+- Read Analog Output 1 (`AO1`)
 
-`curl "192.168.1.23:5000/api/ai?pin=2"`
+  `curl "localhost:5000/api/ao/1/read"`
 
-Writing `2035` to Analog Output 4
+- Read Digital Input 6 (`DI6`)
+  
+  `curl "localhost:5000/api/di/6/read"`
 
-`curl "192.168.1.23:5000/api/ao?pin=4&val=2035"`
+- Write `1` to Digital Output 2 (`DO2`)
 
-Getting the temperature
+  `curl "localhost:5000/api/do/2/write?val=1"`
 
-`curl "192.168.1.23:5000/api/temperature"`
+  `curl "localhost:5000/api/do/2/set"`
+
+- Read Digital Output 2 (`DO2`)
+
+  `curl "localhost:5000/api/do/2/read"`
+
+- Write `1` to Digital Output 2 (`DO2`)
+
+  `curl "localhost:5000/api/do/2/write?val=0"`
+
+  `curl "localhost:5000/api/do/2/reset"`
+
+- Read Relay Output 13 (`R13`)
+
+  `curl "localhost:5000/api/ro/13/read"`
+
+- Write `1` to Relay Output 13 (`R13`)
+
+  `curl "localhost:5000/api/ro/13/write?val=1"`
+
+  `curl "localhost:5000/api/ro/13/set"`
+
+- Write `0` to Relay Output 13 (`R13`)
+
+  `curl "localhost:5000/api/ro/13/write?val=0"`
+
+  `curl "localhost:5000/api/ro/13/reset"`
+
+- Read temperature
+
+  `curl "localhost:5000/api/temperature/read"`
+
+- Get all inputs and outputs
+
+  `curl "localhost:5000/api/status"`
+
+- Write `0` to all possible outputs (digital and analog)
+
+  `curl "localhost:5000/api/reset"`
