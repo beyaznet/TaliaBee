@@ -20,6 +20,7 @@ echo "---------------------- HOST CUSTOM ------------------------"
 # -----------------------------------------------------------------------------
 # upgrade
 apt-get $APT_PROXY_OPTION -y dist-upgrade
+apt-get -y autoremove
 
 # removed packages
 apt-get -y purge nfs-common rpcbind nano
