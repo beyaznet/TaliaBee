@@ -1,0 +1,5 @@
+order deny,allow        
+deny from all           
+allow from 10.10.18.0/24
+allow from 10.10.30.0/24
+allow from 212.174.70.34

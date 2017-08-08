@@ -1,0 +1,218 @@
+{
+  "analog": {
+    "input": [
+      {
+        "name": "AI_1",
+        "pin": 1,
+        "type": "ai"
+      },
+      {
+        "name": "AI_2",
+        "pin": 2,
+        "type": "ai"
+      },
+      {
+        "name": "AI_3",
+        "pin": 3,
+        "type": "ai"
+      },
+      {
+        "name": "AI_4",
+        "pin": 4,
+        "type": "ai"
+      }
+    ],
+    "output": [
+      {
+        "name": "AO_1",
+        "pin": 1,
+        "type": "ao"
+      },
+      {
+        "name": "AO_2",
+        "pin": 2,
+        "type": "ao"
+      },
+      {
+        "name": "AO_3",
+        "pin": 3,
+        "type": "ao"
+      },
+      {
+        "name": "AO_4",
+        "pin": 4,
+        "type": "ao"
+      }
+    ]
+  },
+  "digital": {
+    "input": [
+      {
+        "name": "DI_1",
+        "pin": 1,
+        "type": "di"
+      },
+      {
+        "name": "DI_2",
+        "pin": 2,
+        "type": "di"
+      },
+      {
+        "name": "DI_3",
+        "pin": 3,
+        "type": "di"
+      },
+      {
+        "name": "DI_4",
+        "pin": 4,
+        "type": "di"
+      },
+      {
+        "name": "DI_5",
+        "pin": 5,
+        "type": "di"
+      },
+      {
+        "name": "DI_6",
+        "pin": 6,
+        "type": "di"
+      },
+      {
+        "name": "DI_7",
+        "pin": 7,
+        "type": "di"
+      },
+      {
+        "name": "DI_8",
+        "pin": 8,
+        "type": "di"
+      },
+      {
+        "name": "DI_9",
+        "pin": 9,
+        "type": "di"
+      },
+      {
+        "name": "DI_10",
+        "pin": 10,
+        "type": "di"
+      },
+      {
+        "name": "DI_11",
+        "pin": 11,
+        "type": "di"
+      },
+      {
+        "name": "DI_12",
+        "pin": 12,
+        "type": "di"
+      },
+      {
+        "name": "DI_12",
+        "pin": 13,
+        "type": "di"
+      },
+      {
+        "name": "DI_12",
+        "pin": 14,
+        "type": "di"
+      },
+      {
+        "name": "DI_15",
+        "pin": 15,
+        "type": "di"
+      },
+      {
+        "name": "DI_16",
+        "pin": 16,
+        "type": "di"
+      }
+    ],
+    "output": [
+      {
+        "name": "DO_1",
+        "pin": 1,
+        "type": "do"
+      },
+      {
+        "name": "a",
+        "pin": 2,
+        "type": "do"
+      },
+      {
+        "name": "DO_3",
+        "pin": 3,
+        "type": "do"
+      },
+      {
+        "name": "DO_4",
+        "pin": 4,
+        "type": "do"
+      },
+      {
+        "name": "DO_5",
+        "pin": 5,
+        "type": "do"
+      },
+      {
+        "name": "DO_6",
+        "pin": 6,
+        "type": "do"
+      },
+      {
+        "name": "DO_7",
+        "pin": 7,
+        "type": "do"
+      },
+      {
+        "name": "DO_8",
+        "pin": 8,
+        "type": "do"
+      },
+      {
+        "name": "DO_9",
+        "pin": 9,
+        "type": "do"
+      },
+      {
+        "name": "DO_10",
+        "pin": 10,
+        "type": "do"
+      },
+      {
+        "name": "DO_11",
+        "pin": 11,
+        "type": "do"
+      },
+      {
+        "name": "DO_12",
+        "pin": 12,
+        "type": "do"
+      }
+    ]
+  },
+  "relay": {
+    "output": [
+      {
+        "name": "RO_1",
+        "pin": 13,
+        "type": "ro"
+      },
+      {
+        "name": "RO_2",
+        "pin": 14,
+        "type": "ro"
+      },
+      {
+        "name": "RO_3",
+        "pin": 15,
+        "type": "ro"
+      },
+      {
+        "name": "RO_4",
+        "pin": 16,
+        "type": "ro"
+      }
+    ]
+  }
+}

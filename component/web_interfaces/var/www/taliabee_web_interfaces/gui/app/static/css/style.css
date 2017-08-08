@@ -1,0 +1,51 @@
+.row > .col-md-6.col-xs-6 {
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+
+input[type="number"] {
+    position: relative;
+    float: left;
+    text-align: right;
+}
+
+.btn.btn-xs.btn-primary {
+    margin-bottom: 2px;
+    position: relative;
+    float: left;
+}
+
+input[type="text"] {
+    border: none;
+    /*outline: none;*/
+    text-align: left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+input[type="text"]:hover {
+    background: #eee;
+}
+
+.bootstrap-switch{
+    position: relative;
+    float: left;
+}
+
+.label {
+    font-size: 18px;
+    position: relative;
+    float: left;
+}
+
+.label + input[type="text"] {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.indicator {
+    font-size: 32px;
+}

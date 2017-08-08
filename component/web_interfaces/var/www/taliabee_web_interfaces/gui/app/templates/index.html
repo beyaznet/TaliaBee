@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MedIOEx Test Suite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/static/jquery/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <link href="static/css/style.css" rel="stylesheet">
+    <script src="/static/vue/vue.min.js"></script>
+    <script src="/static/js/tools.js"></script>
+</head>
+<body >
+    <div id="app">
+      <section class="content">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-4 col-xs-4">
+                          <datetime :datenow="datenow"></datetime>
+                        </div>
+                        <div class="col-md-4 col-xs-4">
+                          <temperature :temp="temperature"></temperature>
+                        </div>
+
+                        <div class="col-md-4 col-xs-4">
+                          <div class="col-md-4 col-xs-4">
+                            <button v-on:click="reset_onclick()" type="button" class="btn btn-primary">Reset</button>
+                          </div>
+                          <div class="col-md-8 col-xs-4">
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                  {% raw %} {{ current_interval }} {% endraw %} seconds
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li v-for="interval in intervals" >
+                                  <a v-on:click="interval_refresh_onclick(interval);">{% raw %} {{ interval }} {% endraw %} seconds</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="box-body">
+            <div class="col-md-2 col-xs-6 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Digital Input</strong></div>
+                    <div class="panel-body">
+                            <toggle v-for="component in digital_inputs" :disabled="true" :component="component"></toggle>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-6 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Digital Output</strong></div>
+                    <div class="panel-body">
+                        <toggle v-for="component in digital_outputs" :disabled="false" :component="component"></toggle>
+                        <toggle v-for="component in relay_outputs" :disabled="false" :component="component"></toggle>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Analog Input</strong></div>
+                    <div class="panel-body">
+                        <analog-toggle v-for="component in analog_inputs" :name="component.name" :value="component.value" :disabled="true" :show="false" :component="component"></analog-toggle>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Analog Output</strong></div>
+                    <div class="panel-body">
+
+                        <analog-toggle v-for="component in analog_outputs" :name="component.name" :value="component.value" :disabled="false" :show="true" :component="component">
+                        </analog-toggle>
+                    </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </section>
+    </div>
+
+  <script src="/static/js/vue_gui.js"></script>
+</body>
+</html>

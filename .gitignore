@@ -1,0 +1,8 @@
+*~
+*.sw?
+*.log
+*.pyc
+**/__pycache__/
+**/bootstrap/
+**/jquery/
+**/vue/
