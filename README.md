@@ -33,6 +33,7 @@ Interfaces
 ### Web user interface
 
 ### Application programming interface
-[API](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md)
+Please see the [API documentation](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md) for common usages.
 
 ### Python interface
+Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) page for common usages.
