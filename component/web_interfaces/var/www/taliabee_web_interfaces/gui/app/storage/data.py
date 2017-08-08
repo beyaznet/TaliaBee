@@ -9,18 +9,17 @@ def load_data():
         return json.load(f)
 
 
-def set_digital_data(type, pin, pin_value):
+def update_data_name(component, data_type, pin, name):
     data = load_data()
+    if data_type == 'ai' or data_type == 'di':
+        type = 'input'
+    else:
+        type = 'output'
 
-    data['digital'][type][int(pin) - 1]['value'] = pin_value
-
-    with open(DATA_PATH, 'w') as f:
-        json.dump(data, f, indent=2, sort_keys=True)
-
-
-def update_digital_name(type, pin, name):
-    data = load_data()
-    data['digital'][type][int(pin) - 1]['name'] = name
+    if component == 'relay':
+        data[component][type][int(pin) - 13]['name'] = name
+    else:
+        data[component][type][int(pin) - 1]['name'] = name
 
     with open(DATA_PATH, 'w') as f:
         json.dump(data, f, indent=2, sort_keys=True)

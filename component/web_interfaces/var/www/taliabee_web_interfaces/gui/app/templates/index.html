@@ -11,7 +11,7 @@
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <link href="static/css/style.css" rel="stylesheet">
-    <script src="/static/vue/vue.min.js"></script>
+    <script src="/static/vue/vue.js"></script>
     <script src="/static/js/tools.js"></script>
 </head>
 <body >
@@ -24,7 +24,10 @@
                         <div class="col-md-4 col-xs-4">
                           <datetime :datenow="datenow"></datetime>
                         </div>
-                        <div class="col-md-4 col-xs-4">
+                        <div class="col-md-2 col-xs-2">
+                            <button v-on:click="update_name_onclick()" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                        <div class="col-md-2 col-xs-2">
                           <temperature :temp="temperature"></temperature>
                         </div>
 
@@ -55,7 +58,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Digital Input</strong></div>
                     <div class="panel-body">
-                            <toggle v-for="component in digital_inputs" :disabled="true" :component="component"></toggle>
+                            <toggle v-for="component in status['di']" :disabled="true" :component="component"></toggle>
                     </div>
                 </div>
             </div>
@@ -63,8 +66,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Digital Output</strong></div>
                     <div class="panel-body">
-                        <toggle v-for="component in digital_outputs" :disabled="false" :component="component"></toggle>
-                        <toggle v-for="component in relay_outputs" :disabled="false" :component="component"></toggle>
+                        <toggle v-for="component in status['do']" :disabled="false" :component.sync="component"></toggle>
+                        <toggle v-for="component in status['ro']" :disabled="false" :component="component"></toggle>
                     </div>
                 </div>
             </div>
@@ -72,7 +75,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Analog Input</strong></div>
                     <div class="panel-body">
-                        <analog-toggle v-for="component in analog_inputs" :name="component.name" :value="component.value" :disabled="true" :show="false" :component="component"></analog-toggle>
+                        <analog-toggle v-for="component in status['ai']" :disabled="true" :component="component"></analog-toggle>
                     </div>
                 </div>
             </div>
@@ -81,7 +84,7 @@
                     <div class="panel-heading"><strong>Analog Output</strong></div>
                     <div class="panel-body">
 
-                        <analog-toggle v-for="component in analog_outputs" :name="component.name" :value="component.value" :disabled="false" :show="true" :component="component">
+                        <analog-toggle v-for="component in status['ao']" :disabled="false" :component="component">
                         </analog-toggle>
                     </div>
               </div>

@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
-# from flask import request
+from flask import Blueprint, jsonify, request
 from app.storage.data import data as DATA
+from app.storage.data import update_data_name
 import requests
 
 
@@ -30,15 +30,21 @@ def status():
 
 @gui.route('/data', methods=['GET'])
 def analog():
-    analog_outputs = DATA['analog']['output']
-    analog_inputs = DATA['analog']['input']
-    digital_outputs = DATA['digital']['output']
-    digital_inputs = DATA['digital']['input']
-    relay_outputs = DATA['relay']['output']
 
     return jsonify({'status': 'OK',
-                    'data_list': {'analog_output': analog_outputs,
-                                  'analog_input': analog_inputs,
-                                  'digital_outputs': digital_outputs,
-                                  'digital_inputs': digital_inputs,
-                                  'relay_outputs': relay_outputs}})
+                    'data_list': {'analog_output': DATA['analog']['output'],
+                                  'analog_input': DATA['analog']['input'],
+                                  'digital_outputs': DATA['digital']['output'],
+                                  'digital_inputs': DATA['digital']['input'],
+                                  'relay_outputs': DATA['relay']['output']}})
+
+@gui.route('/update', methods=['POST'])
+def update_name():
+    type_dict = {'ai': 'analog', 'ao': 'analog', 'do': 'digital',
+                 'di': 'digital', 'ro': 'relay'}
+
+    for data_type, value in type_dict.items():
+        for data in request.json[data_type]:
+            update_data_name(value, data_type, data['id'], data['name'])
+
+    return jsonify({'status': 'OK'})

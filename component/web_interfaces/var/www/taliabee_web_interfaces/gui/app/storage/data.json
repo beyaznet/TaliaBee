@@ -135,7 +135,7 @@
         "type": "do"
       },
       {
-        "name": "a",
+        "name": "DO_2",
         "pin": 2,
         "type": "do"
       },
@@ -194,23 +194,23 @@
   "relay": {
     "output": [
       {
-        "name": "RO_1",
-        "pin": 13,
+        "name": "RO_1adsa",
+        "pin": 1,
         "type": "ro"
       },
       {
         "name": "RO_2",
-        "pin": 14,
+        "pin": 2,
         "type": "ro"
       },
       {
         "name": "RO_3",
-        "pin": 15,
+        "pin": 3,
         "type": "ro"
       },
       {
         "name": "RO_4",
-        "pin": 16,
+        "pin": 4,
         "type": "ro"
       }
     ]
