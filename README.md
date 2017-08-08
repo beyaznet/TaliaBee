@@ -31,6 +31,7 @@ Interfaces
 ==========
 
 ### Web user interface
+Coming soon.
 
 ### Application programming interface
 Please see the [API documentation](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md) for common usages.
