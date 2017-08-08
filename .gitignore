@@ -4,5 +4,6 @@
 *.pyc
 **/__pycache__/
 **/bootstrap/
+**/bootstrap-toggle/
 **/jquery/
 **/vue/

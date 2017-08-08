@@ -45,6 +45,13 @@ mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/bootstrap
 cp -arp node_modules/bootstrap/dist/* \
     /var/www/taliabee_web_interfaces/gui/app/static/bootstrap/
 
+npm install bootstrap-toggle@2
+mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/{css,js}
+cp -arp node_modules/bootstrap-toggle/css/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/css/
+cp -arp node_modules/bootstrap-toggle/js/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/js/
+
 npm install jquery@3
 mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/jquery
 cp -arp node_modules/jquery/dist/* \
