@@ -1,6 +1,6 @@
 About
 =====
-TaliaBee box is an easy-to-use I/O controller based on [Raspberry Pi](https://www.raspberrypi.org/) and [MedIOEx](http://www.samm.com/en/medioex-raspberry-pi-industrial-controller-card). This project contains the application layer of TaliaBee box.
+The TaliaBee box is an easy-to-use I/O controller based on [Raspberry Pi](https://www.raspberrypi.org/) and [MedIOEx](http://www.samm.com/en/medioex-raspberry-pi-industrial-controller-card). This project contains the application layer of the TaliaBee box.
 
 Table of contents
 =================
