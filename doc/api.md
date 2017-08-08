@@ -82,6 +82,9 @@ curl -s "http://127.0.0.1/api/do/8/set"
   "type": "do",
   "value": 1
 }
+
+curl -s "http://127.0.0.1/api/do/8/set" | jq .status
+"OK"
 ```
 
 Digital output reset
@@ -101,6 +104,9 @@ curl -s "http://127.0.0.1/api/do/8/reset"
   "type": "do",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/do/8/reset" | jq .status
+"OK"
 ```
 
 Digital output write
@@ -120,6 +126,9 @@ curl -s "http://127.0.0.1/api/do/3/write?val=1"
   "type": "do",
   "value": 1
 }
+
+curl -s "http://127.0.0.1/api/do/3/write?val=1" | jq .status
+"OK"
 ```
 
 Relay output read
@@ -161,6 +170,9 @@ curl -s "http://127.0.0.1/api/ro/14/set"
   "type": "ro",
   "value": 1
 }
+
+curl -s "http://127.0.0.1/api/ro/14/set" | jq .status
+"OK"
 ```
 
 Relay output reset
@@ -180,6 +192,9 @@ curl -s "http://127.0.0.1/api/ro/14/reset"
   "type": "ro",
   "value": 0
 }
+
+curl -s "http://127.0.0.1/api/ro/14/reset" | jq .status
+"OK"
 ```
 
 Relay output write
@@ -199,6 +214,9 @@ curl -s "http://127.0.0.1/api/ro/14/write?val=1"
   "type": "ro",
   "value": 1
 }
+
+curl -s "http://127.0.0.1/api/ro/14/write?val=1" | jq .status
+"OK"
 ```
 
 Analog input read
@@ -262,6 +280,9 @@ curl -s "http://127.0.0.1/api/ao/2/write?val=500"
   "type": "ao",
   "value": 500
 }
+
+curl -s "http://127.0.0.1/api/ao/2/write?val=500" | jq .status
+"OK"
 ```
 
 Temperature read
