@@ -47,7 +47,7 @@ apt-get $APT_PROXY_OPTION -dy dist-upgrade
 apt-get $APT_PROXY_OPTION -y upgrade
 
 # added packages
-apt-get $APT_PROXY_OPTION -y install wget curl rsync
+apt-get $APT_PROXY_OPTION -y install wget curl rsync jq
 apt-get $APT_PROXY_OPTION --install-recommends -y install python3-pip
 
 # pip3 upgrade
