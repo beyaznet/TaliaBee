@@ -61,7 +61,6 @@ Vue.component('analog-toggle', {
   'watch': {
     'barValue': function() {
       this.is_active = (this.barValue == 0 ? false : true)
-      // this.is_active = true;
     }
   },
   'methods': {
@@ -96,7 +95,7 @@ var app = new Vue({
     'datenow': '',
     'current_interval': 10,
     'intervals': [10, 15, 30, 60],
-    'status':{},
+    'status':[],
     'name_list': {},
     'url': 'http://172.22.9.13/api/',
     'checked': true,
@@ -110,7 +109,7 @@ var app = new Vue({
   'methods': {
     'datetime': function() {
       var d = new Date();
-      this.datenow = d.toLocaleTimeString();
+      this.datenow = d.toLocaleTimeString('en-GB');
     },
     'refresh_onclick': function() {
       this.get_status();
