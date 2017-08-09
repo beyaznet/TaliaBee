@@ -81,6 +81,7 @@ systemctl stop uwsgi.service
 systemctl start uwsgi.service
 
 # nginx
+cp etc/nginx/access_list.conf /etc/nginx/
 cp etc/nginx/sites-available/talia.conf /etc/nginx/sites-available/
 rm -f /etc/nginx/sites-enabled/default
 rm -f /etc/nginx/sites-enabled/talia.conf
