@@ -20,6 +20,7 @@ echo "---------------------- WEB INTERFACES ----------------------"
 # -----------------------------------------------------------------------------
 apt-get $APT_PROXY_OPTION -y install nginx-extras ssl-cert
 apt-get $APT_PROXY_OPTION -y install uwsgi uwsgi-plugin-python3
+apt-get $APT_PROXY_OPTION -y install apache2-utils
 apt-get $APT_PROXY_OPTION -y install npm
 
 # Python modules via pip3
@@ -81,7 +82,8 @@ systemctl stop uwsgi.service
 systemctl start uwsgi.service
 
 # nginx
-cp etc/nginx/access_list.conf /etc/nginx/
+cp etc/nginx/access_list_ip.conf /etc/nginx/
+cp etc/nginx/access_list_user.conf /etc/nginx/
 cp etc/nginx/sites-available/talia.conf /etc/nginx/sites-available/
 rm -f /etc/nginx/sites-enabled/default
 rm -f /etc/nginx/sites-enabled/talia.conf
