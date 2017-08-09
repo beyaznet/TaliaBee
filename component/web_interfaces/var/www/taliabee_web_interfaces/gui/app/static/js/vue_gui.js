@@ -35,26 +35,39 @@ Vue.component('toggle', {
 
 
 Vue.component('analog-toggle', {
-  'props': ['disabled', 'component', 'value'],
+  'props': ['disabled', 'component'],
+  'data': function() {
+    return {
+      barValue: 0,
+      is_active: false
+    };
+  },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
                 <div class="col-md-4">\
-                  <span class="label label-default col-md-3" v-if="component.type == \'ao\'">{{ component.value }}</span>\
-                  <input type="text" maxlength="4" v-model="value" :disabled=disabled>\
+                  <span class="label label-default col-md-3">{{ component.value }}</span>\
+                  <input type="text" maxlength="4" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
                 <div class="col-md-4" v-if="component.type == \'ao\'">\
-                 <input type="range" min="0" step="value" max="4095" v-model="value">\
+                 <input type="range" min="0" step="barValue" max="4095" v-model="barValue">\
                 </div>\
                 <div class="col-md-4">\
                   <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
                   <input type="text" class="col-md-6" v-model="component.name" v-else>\
-                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" class="btn btn-primary">\
+                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn btn-primary\' : \'btn btn-dafault\'" :disabled=!is_active>\
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\
                   </button>\
                 </div>\
               </div>',
+  'watch': {
+    'barValue': function() {
+      this.is_active = (this.barValue == 0 ? false : true)
+      // this.is_active = true;
+    }
+  },
   'methods': {
     'onclick': function(data) {
-      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.value) , [], null, r => {this.component.value = JSON.parse(r).value;});
+      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null, r => {this.component.value = JSON.parse(r).value;});
+      this.barValue = 0;
       }
     }
 });
@@ -62,7 +75,12 @@ Vue.component('analog-toggle', {
 
 Vue.component('datetime', {
   'props': ['datenow'],
-  'template': '<span class="indicator">{{ datenow }}</span>'
+  'data': function() {
+    return {
+      counter: 0
+    };
+  },
+  'template': '<span class="indicator">{{ datenow }} + {{ counter }}</span>',
 });
 
 Vue.component('temperature', {
@@ -126,7 +144,9 @@ var app = new Vue({
         name_list = this.name_list[key]
         status_data_list = this.status[dictionary[key]]
         for (var i = name_list.length - 1; i >= 0; i--) {
-
+          if (dictionary[key] == 'ro') {
+            this.status[dictionary[key]][i].name = name_list[i].name;
+          }
           if(parseInt(status_data_list[i].id) === parseInt( name_list[i].pin)){
             this.status[dictionary[key]][i].name = name_list[i].name;
           }

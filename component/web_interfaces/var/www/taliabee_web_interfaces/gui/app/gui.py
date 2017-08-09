@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.storage.data import update_data_name, load_data
 import requests
-from pprint import pprint
 
 gui = Blueprint('gui', __name__, url_prefix='/gui')
 
@@ -22,7 +21,6 @@ def status():
         for j in response_data['value'][i]:
             status_data[i].append({'id': j, 'type': i, 'name': i + j,
                                    'value': response_data['value'][i][j]})
-    pprint(status_data)
     return jsonify({'status': 'OK',
                     'value': status_data,
                     'temperature': temperature_value})
