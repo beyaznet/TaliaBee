@@ -194,22 +194,22 @@
   "relay": {
     "output": [
       {
-        "name": "RO_1adsa",
+        "name": "ro13",
         "pin": 1,
         "type": "ro"
       },
       {
-        "name": "RO_2",
+        "name": "ro14",
         "pin": 2,
         "type": "ro"
       },
       {
-        "name": "RO_3",
+        "name": "ro15",
         "pin": 3,
         "type": "ro"
       },
       {
-        "name": "RO_4",
+        "name": "ro16",
         "pin": 4,
         "type": "ro"
       }

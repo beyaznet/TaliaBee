@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>MedIOEx Test Suite</title>
+    <title>TaliaBee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/static/jquery/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
                           <datetime :datenow="datenow"></datetime>
                         </div>
                         <div class="col-md-2 col-xs-2">
-                            <button v-on:click="update_name_onclick()" type="button" class="btn btn-primary">Save</button>
+                            <button v-on:click="update_checked()" type="button" class="btn btn-primary">{% raw %} {{checked == true ? 'Unlock' : 'Lock'}} {% endraw %}</button>
                         </div>
                         <div class="col-md-2 col-xs-2">
                           <temperature :temp="temperature"></temperature>

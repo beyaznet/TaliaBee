@@ -10,7 +10,8 @@ Vue.component('toggle', {
                 </a>\
                 <span class="label label-primary" v-if="component.type == \'di\' && component.value == 1" :readonly=disabled>On</span>\
                 <span class="label label-default" v-else-if="component.type == \'di\' && component.value == 0" :readonly=disabled>Off</span>\
-                <input type="text" class="col-md-6" v-model="component.name">\
+                <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                <input type="text" class="col-md-6" v-model="component.name" v-else>\
               </div>',
   'watch': {
     'component': function() {
@@ -35,23 +36,36 @@ Vue.component('toggle', {
 
 Vue.component('analog-toggle', {
   'props': ['disabled', 'component'],
-  'data': function() {
-    return this.component;
+  'data': {
+    'value': ''
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
-                  <div class="input-group col-md-4">\
-                    <input :value="value" :readonly="disabled" type="number" class="form-control">\
-                    <span class="input-group-btn">\
-                      </button>\
-                    </span>\
-                    <input type="text" class="col-md-6" v-model="name">\
+                <div class="col-md-4">\
+                  <span class="label label-default col-md-3" v-if="component.type == \'ao\'">{{ this.value }}</span>\
+                  <input type="text" maxlength="4" v-model="component.value" :disabled=disabled>\
+                </div>\
+                <div class="col-md-4" v-if="component.type == \'ao\'">\
+                 <input type="range" min="0" step="component.value" max="4095" v-model="component.value">\
+                </div>\
+                <div class="col-md-4">\
+                  <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                  <input type="text" class="col-md-6" v-model="component.name" v-else>\
+                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" class="btn btn-primary">\
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\
+                  </button>\
                 </div>\
               </div>',
+  'created': function() {
+    this.value = this.component.value;
+  },
   'methods': {
-    'data_onclick': function(data) {
+    'onclick': function(data) {
+      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.component.value) , [], null, r => {this.component.value = JSON.parse(r).value;});
+      this.value = this.component.value;
+      }
     }
-  }
 });
+
 
 Vue.component('datetime', {
   'props': ['datenow'],
@@ -63,20 +77,23 @@ Vue.component('temperature', {
   'template': '<span class="indicator">{{ temp }}°C</span>'
 });
 
+
 var app = new Vue({
   'el': '#app',
   'data': {
     'temperature': '',
     'datenow': '',
-    'current_interval': 0,
-    'intervals': [10, 15, 20],
+    'current_interval': 10,
+    'intervals': [10, 15, 30, 60],
     'status':{},
     'name_list': {},
     'url': 'http://172.22.9.13/api/',
+    'checked': true,
+    'interval': null,
   },
   'created': function () {
     this.get_status();
-    this.datetime();
+    this.interval = setInterval(this.get_status, (this.current_interval * 1000))
   },
   'methods': {
     'datetime': function() {
@@ -86,14 +103,12 @@ var app = new Vue({
     'refresh_onclick': function() {
       this.get_status();
     },
-    'interval_refresh_onclick': function() {
-      this.current_interval = interval;
-    },
     'reset_onclick': function() {
       application = this;
       async_request('GET', this.url + 'reset' , [], null, function(response) {application.get_status();});
     },
     'get_status': function() {
+      this.datetime();
       application = this;
       async_request('GET', '/gui/status',  [], null, function (response) {
         status_data = JSON.parse(response);
@@ -116,17 +131,27 @@ var app = new Vue({
       for (var key in dictionary){
         name_list = this.name_list[key]
         status_data_list = this.status[dictionary[key]]
-
         for (var i = name_list.length - 1; i >= 0; i--) {
-          if(parseInt(status_data_list[i].id) === parseInt( name_list[i].pin)){
             this.status[dictionary[key]][i].name = name_list[i].name;
-          }
         }
       }
     },
+    'update_checked': function() {
+      if (this.checked === true) {
+        clearInterval(this.interval)
+        this.checked = false;
+      } else {
+        this.update_name_onclick();
+      }
+    },
     'update_name_onclick': function() {
-      data = JSON.stringify(this.status)
-      request('POST', '/gui/update', [['Content-Type', 'application/json']], data);
+        data = JSON.stringify(this.status);
+        request('POST', '/gui/update', [['Content-Type', 'application/json']], data);
+        this.checked = true;
+        this.interval = setInterval(this.get_status, (this.current_interval * 1000))
+    },
+    'interval_refresh_onclick': function(interval) {
+      this.current_interval = interval;
     }
   }
 });
