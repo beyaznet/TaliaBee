@@ -11,6 +11,7 @@
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <link href="static/css/style.css" rel="stylesheet">
+    <script src="/static/stroge/data.json"></script>
     <script src="/static/vue/vue.js"></script>
     <script src="/static/js/tools.js"></script>
 </head>
@@ -75,7 +76,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Analog Input</strong></div>
                     <div class="panel-body">
-                        <analog-toggle v-for="component in status['ai']" :disabled="true" :component="component"></analog-toggle>
+                        <analog-toggle v-for="component in status['ai']" :disabled="true" :component="component" :value="barValue"></analog-toggle>
                     </div>
                 </div>
             </div>
@@ -84,7 +85,7 @@
                     <div class="panel-heading"><strong>Analog Output</strong></div>
                     <div class="panel-body">
 
-                        <analog-toggle v-for="component in status['ao']" :disabled="false" :component="component">
+                        <analog-toggle v-for="component in status['ao']" :disabled="false" :component="component" :value="barValue">
                         </analog-toggle>
                     </div>
               </div>

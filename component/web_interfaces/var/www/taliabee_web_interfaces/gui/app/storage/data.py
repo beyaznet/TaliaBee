@@ -24,6 +24,3 @@ def update_data_name(component, data_type, pin, name):
     with open(DATA_PATH, 'w') as f:
         json.dump(data, f, indent=2, sort_keys=True)
 
-
-data = load_data()
-# set_digital_output_name()

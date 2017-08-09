@@ -35,17 +35,14 @@ Vue.component('toggle', {
 
 
 Vue.component('analog-toggle', {
-  'props': ['disabled', 'component'],
-  'data': {
-    'value': ''
-  },
+  'props': ['disabled', 'component', 'value'],
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
                 <div class="col-md-4">\
-                  <span class="label label-default col-md-3" v-if="component.type == \'ao\'">{{ this.value }}</span>\
-                  <input type="text" maxlength="4" v-model="component.value" :disabled=disabled>\
+                  <span class="label label-default col-md-3" v-if="component.type == \'ao\'">{{ component.value }}</span>\
+                  <input type="text" maxlength="4" v-model="value" :disabled=disabled>\
                 </div>\
                 <div class="col-md-4" v-if="component.type == \'ao\'">\
-                 <input type="range" min="0" step="component.value" max="4095" v-model="component.value">\
+                 <input type="range" min="0" step="value" max="4095" v-model="value">\
                 </div>\
                 <div class="col-md-4">\
                   <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
@@ -55,13 +52,9 @@ Vue.component('analog-toggle', {
                   </button>\
                 </div>\
               </div>',
-  'created': function() {
-    this.value = this.component.value;
-  },
   'methods': {
     'onclick': function(data) {
-      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.component.value) , [], null, r => {this.component.value = JSON.parse(r).value;});
-      this.value = this.component.value;
+      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.value) , [], null, r => {this.component.value = JSON.parse(r).value;});
       }
     }
 });
@@ -90,6 +83,7 @@ var app = new Vue({
     'url': 'http://172.22.9.13/api/',
     'checked': true,
     'interval': null,
+    'barValue': 0
   },
   'created': function () {
     this.get_status();
@@ -132,7 +126,10 @@ var app = new Vue({
         name_list = this.name_list[key]
         status_data_list = this.status[dictionary[key]]
         for (var i = name_list.length - 1; i >= 0; i--) {
+
+          if(parseInt(status_data_list[i].id) === parseInt( name_list[i].pin)){
             this.status[dictionary[key]][i].name = name_list[i].name;
+          }
         }
       }
     },

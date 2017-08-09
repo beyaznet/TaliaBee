@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, request
-from app.storage.data import data as DATA
-from app.storage.data import update_data_name
+from app.storage.data import update_data_name, load_data
 import requests
-
+from pprint import pprint
 
 gui = Blueprint('gui', __name__, url_prefix='/gui')
 
@@ -23,14 +22,15 @@ def status():
         for j in response_data['value'][i]:
             status_data[i].append({'id': j, 'type': i, 'name': i + j,
                                    'value': response_data['value'][i][j]})
+    pprint(status_data)
     return jsonify({'status': 'OK',
                     'value': status_data,
                     'temperature': temperature_value})
 
 
 @gui.route('/data', methods=['GET'])
-def analog():
-
+def data():
+    DATA = load_data()
     return jsonify({'status': 'OK',
                     'data_list': {'analog_output': DATA['analog']['output'],
                                   'analog_input': DATA['analog']['input'],
