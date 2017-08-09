@@ -46,4 +46,22 @@ Please see the [API documentation](https://github.com/beyaznet/TaliaBee/blob/mas
 ### Python interface
 TaliaBee provides a Python interface for Pythonistas too. [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) can be used to monitor and to control the I/O pins of the TaliaBee box through API.
 
+```python
+>>> from taliabeeio import TaliaBeeIO
+>>> io = TaliaBeeIO()
+>>>
+>>> # read from the analog input 3
+>>> print(io.ai3)
+0
+>>> # write to the analog output 4
+>>> io.ao4 = 250
+>>>
+>>> # set the relay output 13
+>>> io.ro13 = True
+>>>
+>>> # read the temperature
+>>> print(io.temperature)
+37.125
+```
+
 Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) project page for common usages.
