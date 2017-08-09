@@ -36,6 +36,16 @@ ps auxfw >> $OLD_FILES/ps.status
 echo "# ----- dpkg -l -----" >> $OLD_FILES/dpkg.status
 dpkg -l >> $OLD_FILES/dpkg.status
 
+# data.json
+[ -f /var/www/taliabee_web_interfaces/gui/app/storage/data.json ] && \
+    cp /var/www/taliabee_web_interfaces/gui/app/storage/data.json $OLD_FILES/
+
+# nginx
+[ -f /etc/nginx/access_list_ip.conf ] && \
+    cp /etc/nginx/access_list_ip.conf $OLD_FILES/
+[ -f /etc/nginx/access_list_user.conf ] && \
+    cp /etc/nginx/access_list_user.conf $OLD_FILES/
+
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
