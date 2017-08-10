@@ -63,6 +63,11 @@ mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/vue
 cp -arp node_modules/vue/dist/* \
     /var/www/taliabee_web_interfaces/gui/app/static/vue/
 
+npm install lodash
+mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/lodash
+cp -arp node_modules/lodash/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/lodash/
+
 chown pi:pi /var/www/taliabee_web_interfaces/gui -R
 
 # TaliaBee testers
