@@ -41,47 +41,41 @@ Vue.component('analog-toggle', {
   'data': function() {
     return {
       barValue: 0,
-      is_active: false
+      is_active: false,
     };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
                 <div class="col-md-4">\
                   <span class="label label-default col-md-3">{{ component.value }}</span>\
-                  <input type="text" maxlength="4" v-model="barValue" v-if="component.type == \'ao\'">\
+                  <input type="number" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
                 <div class="col-md-4" v-if="component.type == \'ao\'">\
                  <input type="range" min="0" step="barValue" max="4095" v-model="barValue">\
                 </div>\
                 <div class="col-md-4">\
-                  <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
-                  <input type="text" class="col-md-6" v-model="component.name" v-else>\
                   <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn btn-primary\' : \'btn btn-dafault\'" :disabled=!is_active>\
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>\
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                   </button>\
+                  <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                  <input type="text" v-model="component.name" v-else>\
                 </div>\
               </div>',
   'watch': {
     'barValue': function() {
-      this.is_active = (this.barValue == 0 ? false : true)
+      this.is_active = true
     }
   },
   'methods': {
     'onclick': function(data) {
+      this.is_active = false;
       async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null, r => {this.component.value = JSON.parse(r).value;});
-      console.log(this.component.value);
-      this.barValue = 0;
       }
     }
 });
 
 
 Vue.component('datetime', {
-  'props': ['datenow'],
-  'data': function() {
-    return {
-      counter: 0
-    };
-  },
+  'props': ['datenow', 'counter'],
   'template': '<span class="indicator">{{ datenow }} + {{ counter }}</span>',
 });
 
@@ -103,7 +97,11 @@ var app = new Vue({
     'url': 'http://172.22.9.13/api/',
     'checked': true,
     'interval': null,
-    'barValue': 0
+    'barValue': 0,
+    'counter': 0
+  },
+  'watch':{
+    'interval': function() {}
   },
   computed: {
     'status_ordered': function () {
@@ -116,9 +114,16 @@ var app = new Vue({
   },
   'created': function () {
     this.get_status();
-    this.interval = setInterval(this.get_status, (this.current_interval * 1000))
+    this.interval = setInterval(this.tick, 1000)
   },
   'methods': {
+    'tick': function() {
+      if ( this.counter > 0 && this.counter % this.current_interval === 0 && this.checked == true) {
+        this.get_status();
+        this.counter = 0;
+      }
+      this.counter += 1;
+    },
     'datetime': function() {
       var d = new Date();
       this.datenow = d.toLocaleTimeString('en-GB');
@@ -166,7 +171,6 @@ var app = new Vue({
     },
     'update_checked': function() {
       if (this.checked === true) {
-        clearInterval(this.interval)
         this.checked = false;
       } else {
         this.update_name_onclick();
@@ -176,7 +180,6 @@ var app = new Vue({
         data = JSON.stringify(this.status);
         request('POST', '/gui/update', [['Content-Type', 'application/json']], data);
         this.checked = true;
-        this.interval = setInterval(this.get_status, (this.current_interval * 1000))
     },
     'interval_refresh_onclick': function(interval) {
       this.current_interval = interval;
