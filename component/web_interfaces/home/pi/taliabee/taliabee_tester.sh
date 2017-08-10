@@ -72,10 +72,10 @@ do
 	done
 
 	# write ao
-	curl -s "http://127.0.0.1/api/ao/1/write?val=$((RANDOM % 4095 + 1))"
-	curl -s "http://127.0.0.1/api/ao/2/write?val=$((RANDOM % 4095 + 1))"
-	curl -s "http://127.0.0.1/api/ao/3/write?val=$((RANDOM % 4095 + 1))"
-	curl -s "http://127.0.0.1/api/ao/4/write?val=$((RANDOM % 4095 + 1))"
+	curl -s "http://127.0.0.1/api/ao/1/write?val=$((RANDOM % 4096))"
+	curl -s "http://127.0.0.1/api/ao/2/write?val=$((RANDOM % 4096))"
+	curl -s "http://127.0.0.1/api/ao/3/write?val=$((RANDOM % 4096))"
+	curl -s "http://127.0.0.1/api/ao/4/write?val=$((RANDOM % 4096))"
 
 	# read ai / ao
 	for i in $(seq 1 4)
