@@ -10,7 +10,7 @@ OUTPUTS = {}
 def status():
     # url = request.referrer
     # requestpost = requests.get(url + 'api/status')
-    requestpost = requests.get('http://172.22.9.13/api/status')
+    requestpost = requests.get('http://172.22.9.23/api/status')
     response_data = requestpost.json()
     temperature_value = response_data['value']['temperature']
 
@@ -19,8 +19,9 @@ def status():
 
     for i in status_type:
         for j in response_data['value'][i]:
-            status_data[i].append({'id': j, 'type': i, 'name': i + j,
+            status_data[i].append({'id': int(j), 'type': i, 'name': i + j,
                                    'value': response_data['value'][i][j]})
+
     return jsonify({'status': 'OK',
                     'value': status_data,
                     'temperature': temperature_value})

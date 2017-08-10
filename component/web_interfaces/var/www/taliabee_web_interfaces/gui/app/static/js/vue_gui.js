@@ -66,6 +66,7 @@ Vue.component('analog-toggle', {
   'methods': {
     'onclick': function(data) {
       async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null, r => {this.component.value = JSON.parse(r).value;});
+      console.log(this.component.value);
       this.barValue = 0;
       }
     }
@@ -97,10 +98,19 @@ var app = new Vue({
     'intervals': [10, 15, 30, 60],
     'status':[],
     'name_list': {},
-    'url': 'http://172.22.9.13/api/',
+    'url': 'http://172.22.9.23/api/',
     'checked': true,
     'interval': null,
     'barValue': 0
+  },
+  computed: {
+    status: function () {
+      obj = {}
+      for (key in this.status) {
+        obj[key] = _.orderBy(this.status[key], 'id');
+      }
+      return obj;
+    }
   },
   'created': function () {
     this.get_status();
