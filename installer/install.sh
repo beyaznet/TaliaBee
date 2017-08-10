@@ -44,7 +44,8 @@ if [ "root" != "`whoami`" ]
 then
 	echo
 	echo "ERROR: unauthorized user"
-	echo "Please, run the installation script as 'root'"
+	echo "Please, run the installation script as 'root' or use sudo"
+	echo "    sudo bash install.sh"
 	exit 1
 fi
 
