@@ -83,7 +83,7 @@
         "type": "di"
       },
       {
-        "name": "DI_8asdasd",
+        "name": "DI_8",
         "pin": 8,
         "type": "di"
       },
@@ -194,22 +194,22 @@
   "relay": {
     "output": [
       {
-        "name": "ro13",
+        "name": "RO_13",
         "pin": 1,
         "type": "ro"
       },
       {
-        "name": "ro14",
+        "name": "RO_14",
         "pin": 2,
         "type": "ro"
       },
       {
-        "name": "ro15",
+        "name": "RO_15",
         "pin": 3,
         "type": "ro"
       },
       {
-        "name": "ro16",
+        "name": "RO_16",
         "pin": 4,
         "type": "ro"
       }

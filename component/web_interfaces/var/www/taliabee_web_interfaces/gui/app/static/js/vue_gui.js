@@ -98,7 +98,7 @@ var app = new Vue({
     'intervals': [10, 15, 30, 60],
     'status':[],
     'name_list': {},
-    'url': 'http://172.22.9.23/api/',
+    'url': 'http://172.22.9.13/api/',
     'checked': true,
     'interval': null,
     'barValue': 0
