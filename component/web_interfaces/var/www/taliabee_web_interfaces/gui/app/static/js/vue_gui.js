@@ -1,7 +1,9 @@
 Vue.component('toggle', {
   'props': ['disabled', 'component'],
-  'data': {
-    'toggleobject': null
+  'data': function() {
+    return {
+      'toggleobject': null
+    };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
                 <a v-on:click="onclick()">\
@@ -151,13 +153,13 @@ var app = new Vue({
 
       for (var key in dictionary){
         name_list = this.name_list[key]
-        status_data_list = this.status[dictionary[key]]
+        status_data_list = this.status_ordered[dictionary[key]]
         for (var i = name_list.length - 1; i >= 0; i--) {
           if (dictionary[key] == 'ro') {
-            this.status[dictionary[key]][i].name = name_list[i].name;
+            this.status_ordered[dictionary[key]][i].name = name_list[i].name;
           }
           if(parseInt(status_data_list[i].id) === parseInt( name_list[i].pin)){
-            this.status[dictionary[key]][i].name = name_list[i].name;
+            this.status_ordered[dictionary[key]][i].name = name_list[i].name;
           }
         }
       }
