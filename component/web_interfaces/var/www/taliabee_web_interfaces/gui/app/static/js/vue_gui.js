@@ -104,7 +104,7 @@ var app = new Vue({
     'barValue': 0
   },
   computed: {
-    status: function () {
+    'status_ordered': function () {
       obj = {}
       for (key in this.status) {
         obj[key] = _.orderBy(this.status[key], 'id');

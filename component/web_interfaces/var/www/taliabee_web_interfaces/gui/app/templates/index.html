@@ -61,7 +61,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Digital Input</strong></div>
                     <div class="panel-body">
-                            <toggle v-for="component in status['di']" :disabled="true" :component="component"></toggle>
+                            <toggle v-for="component in status_ordered['di']" :disabled="true" :component="component"></toggle>
                     </div>
                 </div>
             </div>
@@ -69,8 +69,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Digital Output</strong></div>
                     <div class="panel-body">
-                        <toggle v-for="component in status['do']"  :disabled="false" :component.sync="component"></toggle>
-                        <toggle v-for="component in status['ro']" :disabled="false" :component="component"></toggle>
+                        <toggle v-for="component in status_ordered['do']"  :disabled="false" :component.sync="component"></toggle>
+                        <toggle v-for="component in status_ordered['ro']" :disabled="false" :component="component"></toggle>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Analog Input</strong></div>
                     <div class="panel-body">
-                        <analog-toggle v-for="component in status['ai']" :disabled="true" :component="component" ></analog-toggle>
+                        <analog-toggle v-for="component in status_ordered['ai']" :disabled="true" :component="component" ></analog-toggle>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     <div class="panel-heading"><strong>Analog Output</strong></div>
                     <div class="panel-body">
 
-                        <analog-toggle v-for="component in status['ao']" :disabled="false" :component="component">
+                        <analog-toggle v-for="component in status_ordered['ao']" :disabled="false" :component="component">
                         </analog-toggle>
                     </div>
               </div>
