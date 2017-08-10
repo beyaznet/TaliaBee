@@ -66,10 +66,10 @@ cp -arp node_modules/vue/dist/* \
 chown pi:pi /var/www/taliabee_web_interfaces/gui -R
 
 # TaliaBee testers
-mkdir -p /home/pi/test
-cp home/pi/test/taliabee_tester.sh /home/pi/test/
-cp home/pi/test/taliabee_tester.py /home/pi/test/
-chown pi:pi /home/pi/test -R
+mkdir -p /home/pi/taliabee
+cp home/pi/taliabee/taliabee_tester.sh /home/pi/taliabee/
+cp home/pi/taliabee/taliabee_tester.py /home/pi/taliabee/
+chown pi:pi /home/pi/taliabee -R
 
 # uwsgi
 cp etc/uwsgi/apps-available/api.ini /etc/uwsgi/apps-available/
