@@ -9,6 +9,9 @@ input[type="number"] {
     position: relative;
     float: left;
     text-align: right;
+    margin-left: 8px;
+    width: 33%;
+  -moz-appearance: textfield;
 }
 
 .btn.btn-xs.btn-primary {
@@ -53,5 +56,29 @@ input[type="text"]:disabled {
 }
 
 .indicator {
-    font-size: 32px;
+    font-size: 24px;
+    position: relative;
+    float: left;
+}
+
+.counter-indicator {
+    color: #f0ad4e;
+}
+
+.temp-indicator {
+    font-size: 24px;
+    position: relative;
+    float: right;
+}
+
+.footer
+{
+    bottom: 0;
+}
+
+*:not(input):not(textarea) {
+     -moz-user-select: -moz-none;
+     -khtml-user-select: none;
+     -webkit-user-select: none;
+
 }

@@ -40,50 +40,60 @@ Vue.component('analog-toggle', {
   'props': ['disabled', 'component'],
   'data': function() {
     return {
+      current_value: '' ,
       barValue: 0,
       is_active: false,
     };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
-                <div class="col-md-4">\
+                <div class="col-md-4 col-sm-4 col-xs-4">\
                   <span class="label label-default col-md-3">{{ component.value }}</span>\
-                  <input type="number" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
+                  <input type="number" class="form-control" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
-                <div class="col-md-4" v-if="component.type == \'ao\'">\
-                 <input type="range" min="0" step="barValue" max="4095" v-model="barValue">\
+                <div class="col-md-4 col-sm-4 col-xs-4" v-if="component.type == \'ao\'">\
+                 <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
                 </div>\
-                <div class="col-md-4">\
+                <div class="col-md-4 col-sm-4 col-xs-4">\
                   <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn btn-primary\' : \'btn btn-dafault\'" :disabled=!is_active>\
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                   </button>\
-                  <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                  <input type="text" class="col-md-6 col-sm-6 col-xs-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
                   <input type="text" v-model="component.name" v-else>\
                 </div>\
               </div>',
   'watch': {
     'barValue': function() {
       this.is_active = true
+      this.current_value = this.component.value
+      console.log(this.current_value);
     }
   },
   'methods': {
     'onclick': function(data) {
       this.is_active = false;
-      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null, r => {this.component.value = JSON.parse(r).value;});
+      if (0 <= parseInt(this.barValue) && parseInt(this.barValue) < 4096) {
+        async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null,
+          r => {
+            if (JSON.parse(r).status) {
+              this.component.value = JSON.parse(r).value;
+            }
+          });
+        } else {
+          alert('Invalid value');
+        }
       }
     }
 });
 
 
-Vue.component('datetime', {
-  'props': ['datenow', 'counter'],
-  'template': '<span class="indicator">{{ datenow }} + {{ counter }}</span>',
+Vue.component('page-header', {
+  'props': ['datenow', 'counter', 'temp'],
+  'template': '<div class="col-md-6 col-xs-8 col-sm-8">\
+               <span class="indicator"> {{ datenow }} </span>\
+               <span class="indicator counter-indicator">+ {{ counter }} </span>\
+               <span class="temp-indicator"> {{ temp }}°C </span>\
+              </div>',
 });
-
-Vue.component('temperature', {
-  'props': ['temp'],
-  'template': '<span class="indicator">{{ temp }}°C</span>'
-});
-
 
 var app = new Vue({
   'el': '#app',
@@ -132,8 +142,13 @@ var app = new Vue({
       this.get_status();
     },
     'reset_onclick': function() {
-      application = this;
-      async_request('GET', this.url + 'reset' , [], null, function(response) {application.get_status();});
+        var ready = confirm("Are you sure?");
+        if (ready == true){
+          application = this;
+          async_request('GET', this.url + 'reset' , [], null, function(response) {application.get_status();});
+        } else {
+          alert('nope')
+        }
     },
     'get_status': function() {
       this.datetime();
