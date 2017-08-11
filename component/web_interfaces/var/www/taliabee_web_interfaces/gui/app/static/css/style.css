@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .row > .col-md-6.col-xs-6 {
     height: 100%;
     position: relative;
@@ -7,11 +11,12 @@
 
 input[type="number"] {
     position: relative;
-    float: left;
+    float: right;
     text-align: right;
-    margin-left: 8px;
-    width: 33%;
-  -moz-appearance: textfield;
+    margin-left: 2px;
+    width: 24%;
+    height: 5%;
+    -moz-appearance: textfield;
 }
 
 .btn.btn-xs.btn-primary {
@@ -25,20 +30,49 @@ input[type="text"] {
     border: none;
     /*outline: none;*/
     text-align: left;
-    padding-top: 2px;
+    padding-top: 4px;
     padding-bottom: 2px;
     margin-top: 3px;
-    margin-right: 8px;
-    margin-left: 8px;
+    margin-right: 16px;
+    margin-left: 4px;
     position: relative;
     float: right;
 }
+
 input[type="text"]:hover {
     background: #eee;
 }
+
+.toggle {
+    margin-bottom: 2px;
+}
+
 input[type="text"]:disabled {
     background: #fff;
 }
+.analog-text {
+    background: #fff;
+    border: none;
+    /*outline: none;*/
+    text-align: left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 3px;
+    width: 50%;
+    /*margin-right: 24px;*/
+    margin-left: 8px;
+    position: relative;
+    float: left;
+}
+.analog-text:hover {
+    background: #eee;
+}
+
+.analog-text:disabled {
+    background: #fff;
+}
+
+
 .bootstrap-switch{
     position: relative;
     float: left;
@@ -48,11 +82,13 @@ input[type="text"]:disabled {
     font-size: 17px;
     position: relative;
     float: left;
+    margin-bottom: 2px;
 }
 
 .label + input[type="text"] {
     margin-top: 3px;
     margin-bottom: 3px;
+    /*text-align: left;*/
 }
 
 .indicator {
@@ -62,6 +98,7 @@ input[type="text"]:disabled {
 }
 
 .counter-indicator {
+    margin-left: 8px;
     color: #f0ad4e;
 }
 
@@ -71,14 +108,29 @@ input[type="text"]:disabled {
     float: right;
 }
 
-.footer
-{
-    bottom: 0;
-}
 
 *:not(input):not(textarea) {
      -moz-user-select: -moz-none;
      -khtml-user-select: none;
      -webkit-user-select: none;
 
+}
+#custom-header {
+    height: 64px;
+}
+
+#custom-body {
+    height: calc(100% - 96px);
+}
+
+#custom-footer {
+    height: 32px;
+    content: "beyaz.net";
+    position: relative;
+    float: left;
+}
+
+img {
+    position: relative;
+    float: right;
 }

@@ -46,19 +46,19 @@ Vue.component('analog-toggle', {
     };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
-                <div class="col-md-4 col-sm-4 col-xs-4">\
-                  <span class="label label-default col-md-3">{{ component.value }}</span>\
-                  <input type="number" class="form-control" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
+                <div class="col-md-5 col-sm-5 col-xs-5">\
+                  <span class="label label-default col-md-2 col-sm-2 col-xs-2">{{ component.value }}</span>\
+                  <input class="analog-text" v-model="component.name" v-if="this.$root.checked == true" disabled >\
+                  <input class="analog-text" v-model="component.name" v-else>\
+                  <input type="number" class="form-control col-md-2" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
-                <div class="col-md-4 col-sm-4 col-xs-4" v-if="component.type == \'ao\'">\
+                <div class="col-md-5 col-sm-5 col-xs-5" v-if="component.type == \'ao\'">\
                  <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
                 </div>\
-                <div class="col-md-4 col-sm-4 col-xs-4">\
-                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn btn-primary\' : \'btn btn-dafault\'" :disabled=!is_active>\
+                <div class="col-md-2 col-sm-2 col-xs-2">\
+                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn-primary\' : \'btn-dafault\'" :disabled=!is_active>\
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                   </button>\
-                  <input type="text" class="col-md-6 col-sm-6 col-xs-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
-                  <input type="text" v-model="component.name" v-else>\
                 </div>\
               </div>',
   'watch': {

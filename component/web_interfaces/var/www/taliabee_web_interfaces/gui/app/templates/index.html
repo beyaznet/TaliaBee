@@ -16,83 +16,78 @@
 </head>
 <body >
   <div id="app" class="col-sm-12 col-md-12 col-xs-12">
-    <section class="content">
-      <div class="col-md-12 col-xs-12 col-sm-12">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="col-md-6 col-sm-3 col-xs-3">
-              <div class="dropdown">
-                  <button v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {% raw %} {{ current_interval }} {% endraw %}
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li v-for="interval in intervals" >
-                    <a v-on:click="interval_refresh_onclick(interval);">{% raw %} {{ interval }} {% endraw %} seconds</a>
-                  </li>
-                </ul>
+    <div id="custom-header" class="col-md-10 col-xs-12 col-sm-12">
+      <div class="panel-body">
+        <div class="col-md-4 col-sm-3 col-xs-3">
+          <div class="dropdown">
+              <button v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {% raw %} {{ current_interval }} {% endraw %}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li v-for="interval in intervals" >
+                <a v-on:click="interval_refresh_onclick(interval);">{% raw %} {{ interval }} {% endraw %} seconds</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-9 col-xs-9">
+            <page-header :datenow="datenow" :counter="counter" :temp="temperature"></page-header>
+              <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default pull-right' : 'glyphicon glyphicon-ok btn btn-danger pull-right'"></button>
+              <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default pull-right" title="Reset"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="custom-body" class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-xs-6 col-sm-6">
+          <div class="panel panel-default">
+              <div class="panel-heading"><strong>Digital Input</strong></div>
+              <div class="panel-body">
+                      <toggle v-for="component in status_ordered['di']" :disabled="true" :component="component"></toggle>
               </div>
-            </div>
-            <div class="col-md-6 col-sm-9 col-xs-9">
-                <page-header :datenow="datenow" :counter="counter" :temp="temperature"></page-header>
-                <div class="col-md-6 col-xs-4 col-sm-4">
-                  <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default' : 'glyphicon glyphicon-ok btn btn-danger'"></button>
-                  <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default" title="Reset"></button>
-                </div>
-            </div>
+          </div>
+      </div>
+      <div class="col-md-2 col-xs-6 col-sm-6">
+          <div class="panel panel-default">
+              <div class="panel-heading"><strong>Digital Output</strong></div>
+              <div class="panel-body">
+                  <toggle v-for="component in status_ordered['do']"  :disabled="false" :component.sync="component"></toggle>
+                  <toggle v-for="component in status_ordered['ro']" :disabled="false" :component="component"></toggle>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-xs-12 col-sm-12">
+          <div class="panel panel-default">
+              <div class="panel-heading"><strong>Analog Input</strong></div>
+              <div class="panel-body">
+                  <analog-toggle v-for="component in status_ordered['ai']" :disabled="true" :component="component" ></analog-toggle>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-xs-12 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Analog Output</strong></div>
+          <div class="panel-body">
+            <analog-toggle v-for="component in status_ordered['ao']" :disabled="false" :component="component"></analog-toggle>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="box-body">
-        <div class="col-md-2 col-xs-6 col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Digital Input</strong></div>
-                <div class="panel-body">
-                        <toggle v-for="component in status_ordered['di']" :disabled="true" :component="component"></toggle>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 col-xs-6 col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Digital Output</strong></div>
-                <div class="panel-body">
-                    <toggle v-for="component in status_ordered['do']"  :disabled="false" :component.sync="component"></toggle>
-                    <toggle v-for="component in status_ordered['ro']" :disabled="false" :component="component"></toggle>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Analog Input</strong></div>
-                <div class="panel-body">
-                    <analog-toggle v-for="component in status_ordered['ai']" :disabled="true" :component="component" ></analog-toggle>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xs-12 col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><strong>Analog Output</strong></div>
-                <div class="panel-body">
-
-                    <analog-toggle v-for="component in status_ordered['ao']" :disabled="false" :component="component">
-                    </analog-toggle>
-                </div>
-          </div>
-        </div>
+    <div id="custom-footer" class="col-md-10 col-sm-12 col-xs-12">
+      <div class="col-sm-4 col-md-4 col-xs-4">
+        <strong>All rights are wonderful.</strong>
+        <a href="http://www.beyaz.net/" target="_blank"> &copy; Beyaz.net  </a>
       </div>
 
-    </section>
+      <div class="col-sm-8 col-md-8 col-xs-8">
+        <a href="http://www.taliabee.io" target="_blank"><img src="/static/image/taliabee.png"></a>
+      </div>
+
+    </div>
   </div>
-  <div class="footer navbar-fixed-bottom">
-      <div class="container">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0
-        </div>
-            <strong>All rights are wonderful </strong>
-        </div>
-      </div>
   <script src="/static/js/vue_gui.js"></script>
 </body>
 </html>
