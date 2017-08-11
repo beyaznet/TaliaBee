@@ -30,7 +30,12 @@ Vue.component('toggle', {
       } else {
         method = 'reset';
       }
-      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  method , [], null, r => {this.component.value = JSON.parse(r).value;});
+      async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  method , [], null,
+        r => {
+          if (JSON.parse(r).status === 'OK') {
+            this.component.value = JSON.parse(r).value;
+          }
+        });
     }
   }
 });
@@ -74,7 +79,7 @@ Vue.component('analog-toggle', {
       if (0 <= parseInt(this.barValue) && parseInt(this.barValue) < 4096) {
         async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null,
           r => {
-            if (JSON.parse(r).status) {
+            if (JSON.parse(r).status === 'OK') {
               this.component.value = JSON.parse(r).value;
             }
           });
