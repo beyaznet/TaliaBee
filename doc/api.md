@@ -225,7 +225,7 @@ Analog input read
 /api/ai/<int:pin>/read
 ```
 
-Return the value of the analog input. `pin` is the analog input pin number and it's an integer between 1 and 4. The returning value is an integer between 1 and 4095.
+Return the value of the analog input. `pin` is the analog input pin number and it's an integer between 1 and 4. The returning value is an integer between 0 and 4095.
 
 ```bash
 curl -s "http://127.0.0.1/api/ai/2/read"
@@ -247,7 +247,7 @@ Analog output read
 /api/ao/<int:pin>/read
 ```
 
-Return the value of the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. The returning value is an integer between 1 and 4095.
+Return the value of the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. The returning value is an integer between 0 and 4095.
 
 ```bash
 curl -s "http://127.0.0.1/api/ao/2/read"
@@ -269,7 +269,7 @@ Analog output write
 /api/ao/<int:pin>/write?val=<int:val>
 ```
 
-Write to the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. `val` is an integer between 1 and 4095.
+Write to the analog output. `pin` is the analog output pin number and it's an integer between 1 and 4. `val` is an integer between 0 and 4095.
 
 ```bash
 curl -s "http://127.0.0.1/api/ao/2/write?val=500"
