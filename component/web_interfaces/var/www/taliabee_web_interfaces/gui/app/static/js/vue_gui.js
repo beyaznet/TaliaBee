@@ -51,17 +51,17 @@ Vue.component('analog-toggle', {
     };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
-                <div class="col-md-6 col-sm-6 col-xs-6">\
-                  <span class="label label-default col-md-2 col-sm-2 col-xs-2">{{ component.value }}</span>\
-                  <input class="analog-text" v-model="component.name" v-if="this.$root.checked == true" disabled >\
-                  <input class="analog-text" v-model="component.name" v-else>\
-                  <input type="number" class="form-control col-md-2" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
+                <div class="col-md-7 col-sm-6 col-xs-12">\
+                  <span class="label label-default col-md-2 col-sm-2 col-xs-4">{{ component.value }}</span>\
+                  <input class="analog-text col-xs-6" v-model="component.name" v-if="this.$root.checked == true" disabled >\
+                  <input class="analog-text col-xs-6" v-model="component.name" v-else>\
+                  <input type="number" class="form-control col-md-2 col-sm-2 col-xs-2" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
-                <div class="col-md-5 col-sm-5 col-xs-5" v-if="component.type == \'ao\'">\
+                <div class="col-md-4 col-sm-3 col-xs-10" v-if="component.type == \'ao\'">\
                  <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
                 </div>\
-                <div class="col-md-1 col-sm-1 col-xs-1">\
-                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn-primary\' : \'btn-dafault\'" :disabled=!is_active>\
+                <div class="pull-right col-md-1 col-sm-1 col-xs-2">\
+                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'pull-right btn-primary\' : \'pull-right btn-default\'" :disabled=!is_active>\
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                   </button>\
                 </div>\
@@ -145,15 +145,15 @@ var app = new Vue({
       this.datenow = d.toLocaleTimeString('en-GB');
     },
     'refresh_onclick': function() {
+      this.counter = 0;
       this.get_status();
     },
     'reset_onclick': function() {
-        var ready = confirm("Are you sure?");
+        var ready = confirm("Do you want to reset all outputs?");
         if (ready == true){
           application = this;
           async_request('GET', this.url + 'reset' , [], null, function(response) {application.get_status();});
         } else {
-          alert('nope')
         }
     },
     'get_status': function() {

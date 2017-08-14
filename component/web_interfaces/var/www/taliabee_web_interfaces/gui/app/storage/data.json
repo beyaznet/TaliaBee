@@ -17,7 +17,7 @@
         "type": "ai"
       },
       {
-        "name": "AI_4 ",
+        "name": "AI_4",
         "pin": 4,
         "type": "ai"
       }
@@ -108,12 +108,12 @@
         "type": "di"
       },
       {
-        "name": "DI_12",
+        "name": "DI_13",
         "pin": 13,
         "type": "di"
       },
       {
-        "name": "DI_12",
+        "name": "DI_14",
         "pin": 14,
         "type": "di"
       },

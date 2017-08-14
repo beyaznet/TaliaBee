@@ -14,7 +14,7 @@ input[type="number"] {
     float: right;
     text-align: right;
     margin-left: 2px;
-    width: 32%;
+    width: 30%;
     height: 5%;
     -moz-appearance: textfield;
 }
@@ -59,7 +59,7 @@ input[type="text"]:disabled {
     padding-top: 2px;
     padding-bottom: 2px;
     margin-top: 3px;
-    width: 42%;
+    width: 40%;
     /*margin-right: 24px;*/
     margin-left: 8px;
     position: relative;
@@ -83,13 +83,13 @@ input[type="text"]:disabled {
     font-size: 17px;
     position: relative;
     float: left;
-    width: 20%;
+    width: 24%;
     margin-bottom: 2px;
 }
 
 .label + input[type="text"] {
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     /*text-align: left;*/
 }
 
@@ -100,14 +100,15 @@ input[type="text"]:disabled {
 }
 
 .counter-indicator {
-    margin-left: 8px;
     color: #f0ad4e;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .temp-indicator {
     font-size: 24px;
     position: relative;
-    float: right;
+    float: center;
 }
 
 
@@ -118,7 +119,7 @@ input[type="text"]:disabled {
 
 }
 #custom-header {
-    height: 64px;
+    height: 20%;
 }
 
 #panel-body {
@@ -127,7 +128,7 @@ input[type="text"]:disabled {
 
 
 #custom-body {
-    height: calc(100% - 154px);
+    height: calc(100% - 20%);
 }
 
 #custom-footer {
@@ -140,4 +141,9 @@ input[type="text"]:disabled {
 img {
     position: relative;
     float: right;
+}
+
+.pull-right {
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
