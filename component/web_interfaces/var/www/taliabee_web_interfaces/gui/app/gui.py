@@ -11,7 +11,10 @@ def status():
     url = request.referrer
     requestpost = requests.get(url + 'api/status')
     # requestpost = requests.get('http://172.22.9.13/api/status')
-    response_data = requestpost.json()
+    try:
+      response_data = requestpost.json()
+    except:
+      return jsonify({'status': 'error'})
     temperature_value = response_data['value']['temperature']
 
     status_data = {'do': [], 'di': [], 'ao': [], 'ai': [], 'ro': []}

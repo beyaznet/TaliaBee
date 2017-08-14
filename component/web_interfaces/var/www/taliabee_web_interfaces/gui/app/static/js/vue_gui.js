@@ -160,10 +160,12 @@ var app = new Vue({
       this.datetime();
       application = this;
       async_request('GET', '/gui/status',  [], null, function (response) {
-        status_data = JSON.parse(response);
-        application.status = status_data.value;
-        application.temperature = status_data.temperature;
-        application.get_names();
+        if (JSON.parse(response).status === 'OK') {
+          status_data = JSON.parse(response);
+          application.status = status_data.value ? status_data.value : '';
+          application.temperature = status_data.temperature ? status_data.temperature : '';
+          application.get_names();
+        }
       });
     },
     'get_names': function() {
