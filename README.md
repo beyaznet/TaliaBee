@@ -31,7 +31,11 @@ Interfaces
 ==========
 
 ### Web user interface
-Coming soon.
+TaliaBee provides an easy-to-use, mobile-friendly web user interface.
+
+![TaliaBee web interface](/doc/taliabeee_screen.png)
+
+Please see the [GUI documentation](/doc/gui.md) for common usages.
 
 ### Application programming interface
 TaliaBee provides an API for developers. The developers can monitor and control TaliaBee's I/O through API using their favorite programming languages. Therefore, you don't need to know a specific programming language to use TaliaBee. You can communicate through API even without writing any code.
