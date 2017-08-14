@@ -8,9 +8,9 @@ OUTPUTS = {}
 
 @gui.route('/status', methods=['GET'])
 def status():
-    url = request.referrer
+    url = request.referrergi
     requestpost = requests.get(url + 'api/status')
-    # requestpost = requests.get('http://172.22.9.13/api/status')
+    # requestpost = requests.get('http://172.22.9.23/api/status')
     response_data = requestpost.json()
     temperature_value = response_data['value']['temperature']
 

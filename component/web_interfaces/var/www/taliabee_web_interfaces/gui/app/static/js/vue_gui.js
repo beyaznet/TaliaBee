@@ -12,8 +12,8 @@ Vue.component('toggle', {
                 </a>\
                 <span class="label label-primary" v-if="component.type == \'di\' && component.value == 1" :readonly=disabled>On</span>\
                 <span class="label label-default" v-else-if="component.type == \'di\' && component.value == 0" :readonly=disabled>Off</span>\
-                <input type="text" class="col-md-6" v-model="component.name" v-if="this.$root.checked == true" disabled>\
-                <input type="text" class="col-md-6" v-model="component.name" v-else>\
+                <input type="text" class="col-md-12 col-sm-12 col-xs-12" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                <input type="text" class="col-md-12 col-sm-12 col-xs-12" v-model="component.name" v-else>\
               </div>',
   'watch': {
     'component': function() {
@@ -51,7 +51,7 @@ Vue.component('analog-toggle', {
     };
   },
   'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
-                <div class="col-md-5 col-sm-5 col-xs-5">\
+                <div class="col-md-6 col-sm-6 col-xs-6">\
                   <span class="label label-default col-md-2 col-sm-2 col-xs-2">{{ component.value }}</span>\
                   <input class="analog-text" v-model="component.name" v-if="this.$root.checked == true" disabled >\
                   <input class="analog-text" v-model="component.name" v-else>\
@@ -60,7 +60,7 @@ Vue.component('analog-toggle', {
                 <div class="col-md-5 col-sm-5 col-xs-5" v-if="component.type == \'ao\'">\
                  <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
                 </div>\
-                <div class="col-md-2 col-sm-2 col-xs-2">\
+                <div class="col-md-1 col-sm-1 col-xs-1">\
                   <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'btn-primary\' : \'btn-dafault\'" :disabled=!is_active>\
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                   </button>\
@@ -110,6 +110,7 @@ var app = new Vue({
     'status':[],
     'name_list': {},
     'url': '/api/',
+    // 'url': 'http://172.22.9.13/api/',
     'checked': true,
     'interval': null,
     'barValue': 0,
