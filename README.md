@@ -45,7 +45,7 @@ Using `curl` to set the relay output #14
 curl -s "http://127.0.0.1/api/ro/14/set"
 ```
 
-Please see the [API documentation](https://github.com/beyaznet/TaliaBee/blob/master/doc/api.md) for common usages.
+Please see the [API documentation](/doc/api.md) for common usages.
 
 ### Python interface
 TaliaBee provides a Python interface for Pythonistas too. [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) can be used to monitor and to control the I/O pins of the TaliaBee box through API.
