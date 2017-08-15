@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify, request
 from medioex import do_write, di_read, ao_write, ai_read, temp_read
+from time import sleep
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
+ANALOG_READ_WAIT= 0.05
 OUTPUTS = {}
 
 # DIGITAL INPUT ROUTES
@@ -163,6 +165,7 @@ def ai_read_api(pin):
             'status': 'ERROR',
             'message': 'Analog input pins for MedIOEx must be in [1, 4]'})
 
+    sleep(ANALOG_READ_WAIT)
     result = ai_read(pin)
 
     return jsonify({'status': 'OK',
@@ -212,6 +215,7 @@ def ao_write_api(pin):
 
 @api.route('/temperature/read', methods=['GET'])
 def get_temperature():
+    sleep(ANALOG_READ_WAIT)
     result = temp_read(1)
     return jsonify({'status': 'OK',
                     'type': 'temperature',
@@ -245,18 +249,21 @@ def reset_all_outputs():
 @api.route('/status', methods=['GET'])
 def status():
     status = OUTPUTS.copy()
+
     inputs = {
         'di': {},
         'ai': {}
     }
     for pin in range(1, 17):
         inputs['di'][pin] = di_read(pin)
-
     for pin in range(1, 5):
+        sleep(ANALOG_READ_WAIT)
         inputs['ai'][pin] = ai_read(pin)
-
     status.update(inputs)
+
+    sleep(ANALOG_READ_WAIT)
     status['temperature'] = temp_read(1)
+
     return jsonify({'status': 'OK',
                     'action': 'status',
                     'value': status})
