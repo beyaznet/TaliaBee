@@ -68,6 +68,13 @@ mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/lodash
 cp -arp node_modules/lodash/* \
     /var/www/taliabee_web_interfaces/gui/app/static/lodash/
 
+npm install font-awesome@4
+mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/font-awesome/{css,fonts}
+cp -arp node_modules/bootstrap-toggle/css/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/css/
+cp -arp node_modules/bootstrap-toggle/fonts/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/fonts/
+
 chown pi:pi /var/www/taliabee_web_interfaces/gui -R
 
 # TaliaBee testers
