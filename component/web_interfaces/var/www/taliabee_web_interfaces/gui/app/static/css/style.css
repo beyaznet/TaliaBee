@@ -155,3 +155,7 @@ img {
     cursor: pointer;
 
 }
+
+a {
+    padding-right: 2px;
+}
