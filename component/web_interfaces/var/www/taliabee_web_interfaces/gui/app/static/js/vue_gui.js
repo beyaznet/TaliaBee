@@ -70,7 +70,6 @@ Vue.component('analog-toggle', {
     'barValue': function() {
       this.is_active = true
       this.current_value = this.component.value
-      console.log(this.current_value);
     }
   },
   'methods': {
@@ -110,11 +109,12 @@ var app = new Vue({
     'status':[],
     'name_list': {},
     'url': '/api/',
-    // 'url': 'http://172.22.9.13/api/',
+    // 'url': 'http://172.22.9.23/api/',
     'checked': true,
     'interval': null,
     'barValue': 0,
-    'counter': 0
+    'counter': 0,
+    'mini_bug': 0
   },
   'watch':{
     'interval': function() {}
@@ -131,6 +131,7 @@ var app = new Vue({
   'created': function () {
     this.get_status();
     this.interval = setInterval(this.tick, 1000)
+    this.mini_bug = Math.floor(Math.random() * 10000);
   },
   'methods': {
     'tick': function() {
@@ -206,6 +207,11 @@ var app = new Vue({
     },
     'interval_refresh_onclick': function(interval) {
       this.current_interval = interval;
+    },
+    'alert_message_onclick': function() {
+      if ( this.mini_bug === 1729) {
+      alert('It was working in my computer.');
+      }
     }
   }
 });

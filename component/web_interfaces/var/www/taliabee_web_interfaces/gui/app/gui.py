@@ -10,7 +10,7 @@ OUTPUTS = {}
 def status():
     url = request.referrer
     requestpost = requests.get(url + 'api/status')
-    # requestpost = requests.get('http://172.22.9.13/api/status')
+    # requestpost = requests.get('http://172.22.9.23/api/status')
     try:
       response_data = requestpost.json()
     except:

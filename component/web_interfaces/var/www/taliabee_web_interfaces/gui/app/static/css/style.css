@@ -80,7 +80,7 @@ input[type="text"]:disabled {
 }
 
 .label {
-    font-size: 17px;
+    font-size: 18px;
     position: relative;
     float: left;
     width: 24%;
@@ -147,4 +147,11 @@ img {
 .pull-right {
     margin-bottom: 2px;
     margin-top: 2px;
+}
+.message-link, .message-link:hover {
+    color: #333333;
+    padding-right: 8px;
+    text-decoration:none;
+    cursor: pointer;
+
 }
