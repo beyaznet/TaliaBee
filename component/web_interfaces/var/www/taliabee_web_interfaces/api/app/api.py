@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
 from medioex import do_write, di_read, ao_write, ai_read, temp_read
-from time import sleep
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
