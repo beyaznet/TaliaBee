@@ -21,7 +21,7 @@
       <div class="panel-body">
         <div class="col-md-4 col-sm-3 col-xs-3">
           <div class="dropdown">
-              <button v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
+              <button id="refresh_button" v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 {% raw %} {{ current_interval }} {% endraw %}
               <span class="caret"></span>

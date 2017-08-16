@@ -158,6 +158,8 @@ var app = new Vue({
         }
     },
     'get_status': function() {
+      document.getElementById('refresh_button').disabled = true;
+
       this.datetime();
       application = this;
       async_request('GET', '/gui/status',  [], null, function (response) {
@@ -167,9 +169,12 @@ var app = new Vue({
           application.temperature = status_data.temperature ? status_data.temperature : '';
           application.get_names();
         }
-      });
+      document.getElementById("refresh_button").disabled = false;
+      }, r => { document.getElementById('refresh_button').disabled = false; });
+
     },
     'get_names': function() {
+      // document.getElementById("refresh_button").disabled = false;
       application = this;
       async_request('GET', '/gui/data',  [], null, function (response) {
         application.name_list = JSON.parse(response).data_list;
