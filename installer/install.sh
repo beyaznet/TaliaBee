@@ -15,7 +15,7 @@ export DATE=`date +"%Y%m%d%H%M%S"`
 export GIT_REPO="https://github.com/beyaznet/TaliaBee.git"
 export GIT_BRANCH="master"
 export GIT_LOCAL_DIR="TaliaBee"
-export RELEASE="Raspbian GNU/Linux 8 (jessie)"
+export RELEASE="Raspbian GNU/Linux"
 export BASEDIR=`pwd`
 
 export ZIGBEE_ME=1000
