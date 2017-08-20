@@ -135,18 +135,16 @@ var app = new Vue({
   },
   'methods': {
     'tick': function() {
+      this.counter += 1;
       if ( this.counter > 0 && this.counter % this.current_interval === 0 && this.checked == true) {
         this.get_status();
-        this.counter = 0;
       }
-      this.counter += 1;
     },
     'datetime': function() {
       var d = new Date();
       this.datenow = d.toLocaleTimeString('en-GB');
     },
     'refresh_onclick': function() {
-      this.counter = 0;
       this.get_status();
     },
     'reset_onclick': function() {
@@ -160,7 +158,6 @@ var app = new Vue({
     'get_status': function() {
       document.getElementById('refresh_button').disabled = true;
 
-      this.datetime();
       application = this;
       async_request('GET', '/gui/status',  [], null, function (response) {
         if (JSON.parse(response).status === 'OK') {
@@ -168,6 +165,8 @@ var app = new Vue({
           application.status = status_data.value ? status_data.value : '';
           application.temperature = status_data.temperature ? status_data.temperature : '';
           application.get_names();
+          application.datetime();
+          application.counter = 0;
         }
       document.getElementById("refresh_button").disabled = false;
       }, r => { document.getElementById('refresh_button').disabled = false; });
