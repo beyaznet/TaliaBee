@@ -35,7 +35,9 @@ Vue.component('toggle', {
           if (JSON.parse(r).status === 'OK') {
             this.component.value = JSON.parse(r).value;
           }
-        });
+        }, r => {
+			this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
+		});
     }
   }
 });
