@@ -73,7 +73,7 @@ chown pi:pi /home/pi/.zshrc
 
 # Use the same SSH keys for user 'pi' if there is no customized authorized_keys
 # file for this user.
-if [ ! -f /home/pi/.ssh/authorized_keys -a -f /root/.ssh/authorized_keys]
+if [ ! -f /home/pi/.ssh/authorized_keys -a -f /root/.ssh/authorized_keys ]
 then
     mkdir -p /home/pi/.ssh
     cp /root/.ssh/authorized_keys /home/pi/.ssh/
