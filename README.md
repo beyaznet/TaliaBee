@@ -12,6 +12,7 @@ Table of contents
     - [Web user interface](#web-user-interface)
     - [Application programming interface (API)](#application-programming-interface)
     - [Python interface](#python-interface)
+- [Contact](#contact)
 
 Requirements
 ============
@@ -73,3 +74,7 @@ TaliaBee provides a Python interface for Pythonistas too. [Python TaliaBeeIO Mod
 ```
 
 Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) project page for common usages.
+
+Contact
+=======
+[@TaliaBeeIO][https://www.twitter.com/taliabeeio) on [Twitter][https://www.twitter.com/taliabeeio)
