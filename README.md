@@ -77,4 +77,4 @@ Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabe
 
 Contact
 =======
-[@TaliaBeeIO][https://www.twitter.com/taliabeeio) on [Twitter][https://www.twitter.com/taliabeeio)
+[@TaliaBeeIO](https://www.twitter.com/taliabeeio) on [Twitter](https://www.twitter.com/taliabeeio)
