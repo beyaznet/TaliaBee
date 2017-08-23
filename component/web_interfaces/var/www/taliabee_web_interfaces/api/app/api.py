@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, abort
+from datetime import datetime
 from medioex import do_write, di_read, ao_write, ai_read, temp_read
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -309,6 +310,7 @@ def status():
     status.update(inputs)
 
     status['temperature'] = temp_read(1)
+    status['uptime'] = datetime.now().timestamp() - OUTPUTS['start_timestamp']
 
     return jsonify({'status': 'OK',
                     'action': 'status',
