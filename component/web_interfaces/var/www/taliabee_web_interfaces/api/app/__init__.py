@@ -1,6 +1,7 @@
 from flask import Flask
 from app.api import api, OUTPUTS
 from datetime import datetime
+from subprocess import getoutput
 from medioex import do_di_init, ai_init, ao_init, temp_init
 
 
@@ -11,6 +12,8 @@ temp_init()
 
 
 # OUTPUTS referenced in app.api
+cmd='grep Serial /proc/cpuinfo | cut -d: -f2 | xargs'
+OUTPUTS['serial'] = getoutput(cmd)
 OUTPUTS['start_timestamp'] = datetime.now().timestamp()
 OUTPUTS['do'] = {i: 0 for i in range(1, 13)}
 OUTPUTS['ro'] = {i: 0 for i in range(13, 17)}
