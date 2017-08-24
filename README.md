@@ -6,6 +6,7 @@ Table of contents
 =================
 
 - [About](#about)
+- [Demo](#demo)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Interfaces](#interfaces)
@@ -20,6 +21,10 @@ Requirements
 - [MedIOEx Controller Card](http://www.samm.com/en/medioex-raspberry-pi-industrial-controller-card)
 - [MedIOEx Switched-Mode Power Adaptor](http://www.samm.com/en/medioex-ms-4024-switched-mode-power-adaptor-24-volt-1-5-amper-smps)
 - [Raspbian GNU/Linux](https://www.raspberrypi.org/downloads/raspbian/) (fresh installed recommended)
+
+Demo
+====
+Visit our [online demo box](http://demo.taliabee.io/) to try TaliaBee.
 
 Installation
 ============
