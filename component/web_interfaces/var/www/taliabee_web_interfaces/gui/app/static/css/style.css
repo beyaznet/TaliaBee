@@ -14,7 +14,7 @@ input[type="number"] {
     float: right;
     text-align: right;
     margin-left: 2px;
-    width: 30%;
+    width: 32%;
     height: 5%;
     -moz-appearance: textfield;
 }
@@ -59,7 +59,7 @@ input[type="text"]:disabled {
     padding-top: 2px;
     padding-bottom: 2px;
     margin-top: 3px;
-    width: 40%;
+    width: 34%;
     /*margin-right: 24px;*/
     margin-left: 8px;
     position: relative;
@@ -80,10 +80,10 @@ input[type="text"]:disabled {
 }
 
 .label {
-    font-size: 18px;
+    font-size: 16px;
     position: relative;
     float: left;
-    width: 24%;
+    width: 28%;
     margin-bottom: 2px;
 }
 
