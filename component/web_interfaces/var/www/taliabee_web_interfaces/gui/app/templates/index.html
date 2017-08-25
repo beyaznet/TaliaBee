@@ -7,6 +7,7 @@
     <script src="/static/jquery/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
     <link href="/static/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="/static/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
     <script type="text/javascript" src="/static/lodash/lodash.min.js"></script>
@@ -15,27 +16,31 @@
     <script src="/static/js/tools.js"></script>
 </head>
 <body >
-  <div id="app" class="col-sm-12 col-md-12 col-xs-12">
-    <div id="custom-header" class="col-md-12 col-xs-12 col-sm-12">
+  <div id="app" class="no-side-space col-sm-12 col-md-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="panel-body">
-        <div class="col-md-4 col-sm-3 col-xs-3">
-          <div class="dropdown">
-              <button v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {% raw %} {{ current_interval }} {% endraw %}
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li v-for="interval in intervals" >
-                <a v-on:click="interval_refresh_onclick(interval);">{% raw %} {{ interval }} {% endraw %} seconds</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-8 col-sm-9 col-xs-9">
+        <div class="col-md-8 col-sm-8 col-xs-12">
             <page-header :datenow="datenow" :counter="counter" :temp="temperature"></page-header>
-              <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default pull-right' : 'glyphicon glyphicon-ok btn btn-danger pull-right'"></button>
-              <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default pull-right" title="Reset"></button>
+        </div>
+        <div class="no-side-space col-md-4 col-sm-4 col-xs-12">
+          <div class="no-side-space col-md-6 col-sm-6 col-xs-6">
+            <div class="dropdown">
+              <button id="refresh_button" v-on:click="refresh_onclick()" class="glyphicon glyphicon-eye-open btn btn-default" aria-hidden="true" title="Refresh"></button>
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {% raw %} {{ current_interval }} {% endraw %}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li v-for="interval in intervals" >
+                  <a v-on:click="interval_refresh_onclick(interval);">{% raw %} {{ interval }} {% endraw %} seconds</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="no-side-space col-md-6 col-sm-6 col-xs-6">
+                <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default pull-right' : 'glyphicon glyphicon-ok btn btn-danger pull-right'"></button>
+                <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default pull-right" title="Reset"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -49,7 +54,7 @@
               </div>
           </div>
       </div>
-      <div class="col-md-3 col-sm-6  col-xs-12">
+      <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="panel panel-default">
               <div class="panel-heading"><strong>Digital Output</strong></div>
               <div class="panel-body">
@@ -58,7 +63,7 @@
               </div>
           </div>
       </div>
-      <div class="col-md-6 col-xs-12 col-sm-12">
+      <div class="col-md-6 col-sm-12 col-xs-12">
           <div class="panel panel-default">
               <div class="panel-heading"><strong>Analog Input</strong></div>
               <div class="panel-body">
@@ -66,7 +71,7 @@
               </div>
           </div>
       </div>
-      <div class="col-md-6 col-xs-12 col-sm-12">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading"><strong>Analog Output</strong></div>
           <div class="panel-body">
@@ -76,20 +81,24 @@
       </div>
     </div>
 
-    <div id="custom-footer" class="col-md-12 col-sm-12 col-xs-12">
-      <div class="col-sm-4 col-md-6 col-xs-6">
-        <strong>All rights are wonderful.</strong>
-        <a href="http://www.beyaz.net/" target="_blank"> &copy;beyaz.net  </a> <br>
-        <a class="message-link" v-on:click="alert_message_onclick()"><strong >Contact us : </strong></a>
-        <a href="https://about.me/ulkubayraktar" target="_blank" title="ulkubayraktar"><span class="glyphicon glyphicon-link"></span></a>
-        <a href="https://about.me/nejdetyucesoy" target="_blank" title="nejdetyucesoy"><span class="glyphicon glyphicon-link"></span></a>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="no-side-space col-md-8 col-sm-8 col-xs-8">
+        <div class="no-side-space col-md-12 col-sm-12 col-xs-12">
+          <strong>All rights are wonderful.</strong>
+          <a href="http://www.beyaz.net/" target="_blank"> &copy;beyaz.net  </a> <br>
+	</div>
+        <div class="no-side-space col-md-12 col-sm-12 col-xs-12">
+          <a class="message-link" v-on:click="alert_message_onclick()"><strong >Contact us : </strong></a>
+          <a href="https://about.me/ulkubayraktar" target="_blank" title="ulkubayraktar"><span class="fa fa-link"></span></a>
+          <a href="https://about.me/nejdetyucesoy" target="_blank" title="nejdetyucesoy"><span class="fa fa-link"></span></a>
+          <a href="https://github.com/beyaznet/TaliaBee/" target="_blank" title="TaliaBee"><span class="fa fa-github"></span></a>
+          <a href="https://twitter.com/taliabeeio" target="_blank" title="TaliabeeIO"><span class="fa fa-twitter"></span></a>
+	</div>
       </div>
 
-      <div class="col-sm-8 col-md-6 col-xs-6">
-
+      <div class="no-side-space col-md-4 col-sm-4 col-xs-4">
         <a href="http://www.taliabee.io" target="_blank"><img src="/static/image/taliabee.png"></a>
       </div>
-
     </div>
   </div>
   <script src="/static/js/vue_gui.js"></script>

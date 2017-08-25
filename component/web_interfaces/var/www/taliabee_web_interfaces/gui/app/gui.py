@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.storage.data import update_data_name, load_data
+from config import API_URL
 import requests
 
 gui = Blueprint('gui', __name__, url_prefix='/gui')
@@ -8,22 +9,20 @@ OUTPUTS = {}
 
 @gui.route('/status', methods=['GET'])
 def status():
-    url = request.referrer
-    requestpost = requests.get(url + 'api/status')
-    # requestpost = requests.get('http://172.22.9.23/api/status')
     try:
-      response_data = requestpost.json()
+        req = requests.get(API_URL + '/api/status')
+        res = req.json()
     except:
-      return jsonify({'status': 'error'})
-    temperature_value = response_data['value']['temperature']
+        return jsonify({'status': 'error'})
+
+    temperature_value = res['value']['temperature']
 
     status_data = {'do': [], 'di': [], 'ao': [], 'ai': [], 'ro': []}
     status_type = ['do', 'di', 'ai', 'ao', 'ro']
-
     for i in status_type:
-        for j in response_data['value'][i]:
+        for j in res['value'][i]:
             status_data[i].append({'id': int(j), 'type': i, 'name': '',
-                                   'value': response_data['value'][i][j]})
+                                   'value': res['value'][i][j]})
 
     return jsonify({'status': 'OK',
                     'value': status_data,

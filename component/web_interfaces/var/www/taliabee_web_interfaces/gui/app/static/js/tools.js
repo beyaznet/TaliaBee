@@ -9,7 +9,7 @@ function request(method, location, headers, data) {
     return response;
 }
 
-function async_request(method, location, headers, data, callback) {
+function async_request(method, location, headers, data, on_success, on_failed) {
   var r = new XMLHttpRequest();
   r.open(method, location);
   header_keys = Object.keys(headers);
@@ -18,7 +18,9 @@ function async_request(method, location, headers, data, callback) {
   }
   r.onreadystatechange = function() {
     if (r.readyState == 4 && r.status == 200){
-        callback(r.responseText);
+        on_success(r.responseText);
+    } else if (r.readyState == 4) {
+        on_failed(r.responseText);
     }
   };
   r.send(data);
