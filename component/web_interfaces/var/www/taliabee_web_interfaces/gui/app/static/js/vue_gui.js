@@ -1,35 +1,27 @@
 Vue.component('toggle', {
   'props': ['disabled', 'component'],
   'data': function() {
-     return {
-       'toggleobject': null
-     };
+    return {
+      'toggleobject': null
+    };
   },
-  'template': '<div class="no-side-space col-md-12 col-sm-12 col-xs-12">\
-	         <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-if="component.type == \'di\'">\
-	           <span class="label label-default label-digital" :readonly=disabled v-if="component.value == 0">Off</span>\
-	           <span class="label label-primary label-digital" :readonly=disabled v-else>On</span>\
-	         </div>\
-	         <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-else>\
-                   <a v-on:click="onclick()">\
-	             <input type="checkbox" :checked="component.value" data-onstyle="warning" v-if="component.type == \'ro\'" >\
-	             <input type="checkbox" :checked="component.value" v-else>\
-	           </a>\
-	         </div>\
-	         <div class="no-side-space space-on-top col-md-8 col-sm-8 col-xs-8">\
-                   <input type="text" v-model="component.name" v-if="this.$root.checked == true" disabled>\
-	           <input type="text" v-model="component.name" v-else>\
-	         </div>\
-               </div>',
+  'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
+                <a v-on:click="onclick()">\
+                  <input type="checkbox" :checked="component.value" data-onstyle="warning" v-if="component.type == \'ro\'" >\
+                  <input type="checkbox" :checked="component.value" v-else-if="component.type == \'do\'">\
+                </a>\
+                <span class="label label-primary" v-if="component.type == \'di\' && component.value == 1" :readonly=disabled>On</span>\
+                <span class="label label-default" v-else-if="component.type == \'di\' && component.value == 0" :readonly=disabled>Off</span>\
+                <input type="text" class="col-md-12 col-sm-12 col-xs-12" v-model="component.name" v-if="this.$root.checked == true" disabled>\
+                <input type="text" class="col-md-12 col-sm-12 col-xs-12" v-model="component.name" v-else>\
+              </div>',
   'watch': {
     'component': function() {
       this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
     }
   },
   'mounted': function() {
-    if (this.component.type === 'do' || this.component.type === 'ro') {
-      this.toggleobject = $(this.$el.children[0].children[0].children[0]).bootstrapToggle({'size': 'small'});
-    }
+    this.toggleobject = $(this.$el.children[0].children[0]).bootstrapToggle({'size': 'small'});
   },
   'methods': {
     'onclick': function() {
@@ -43,10 +35,9 @@ Vue.component('toggle', {
           if (JSON.parse(r).status === 'OK') {
             this.component.value = JSON.parse(r).value;
           }
-        },
-        r => {
-          this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
-        });
+        }, r => {
+			this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
+		});
     }
   }
 });
@@ -61,28 +52,20 @@ Vue.component('analog-toggle', {
       is_active: false,
     };
   },
-  'template': '<div class="no-side-space space-on-bottom col-md-12 col-xs-12 col-sm-12">\
-                <div class="no-side-space col-md-12 col-sm-12 col-xs-12">\
-	          <div class="no-side-space col-md-2 col-sm-2 col-xs-4">\
-                    <span class="label label-default label-analog">{{ component.value }}</span>\
-	          </div>\
-	          <div class="no-side-space space-on-top col-md-10 col-sm-10 col-xs-8">\
-                    <input class="analog-text" v-model="component.name" v-if="this.$root.checked == true" disabled >\
-                    <input class="analog-text" v-model="component.name" v-else>\
-	          </div>\
+  'template': '<div class="col-md-12 col-xs-12 col-sm-12">\
+                <div class="col-md-7 col-sm-6 col-xs-12">\
+                  <span class="label label-default col-md-2 col-sm-2 col-xs-4">{{ component.value }}</span>\
+                  <input class="analog-text col-xs-6" v-model="component.name" v-if="this.$root.checked == true" disabled >\
+                  <input class="analog-text col-xs-6" v-model="component.name" v-else>\
+                  <input type="number" class="form-control col-md-2 col-sm-2 col-xs-2" min="0" max="4095" v-model="barValue" v-if="component.type == \'ao\'">\
                 </div>\
-                <div class="no-side-space col-md-12 col-sm-12 col-xs-12" v-if="component.type == \'ao\'">\
-	          <div class="no-side-space space-on-top col-md-9 col-sm-9 col-xs-7">\
-                    <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
-	          </div>\
-	          <div class="no-side-space col-md-2 col-sm-2 col-xs-3">\
-                    <input type="number" class="form-control" min="0" max="4095" v-model="barValue">\
-	          </div>\
-	          <div class="no-side-space space-on-top col-md-1 col-sm-1 col-xs-2">\
-                    <button  v-on:click="onclick()" type="button" :class="is_active == true ? \'btn-primary\' : \'btn-default\'" :disabled=!is_active>\
-                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
-                    </button>\
-	          </div>\
+                <div class="col-md-4 col-sm-3 col-xs-10" v-if="component.type == \'ao\'">\
+                 <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
+                </div>\
+                <div class="pull-right col-md-1 col-sm-1 col-xs-2">\
+                  <button  v-on:click="onclick()" type="button" v-if="component.type == \'ao\'" :class="is_active == true ? \'pull-right btn-primary\' : \'pull-right btn-default\'" :disabled=!is_active>\
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
+                  </button>\
                 </div>\
               </div>',
   'watch': {
@@ -111,12 +94,10 @@ Vue.component('analog-toggle', {
 
 Vue.component('page-header', {
   'props': ['datenow', 'counter', 'temp'],
-  'template': '<div id="page-header">\
-               <div class="col-md-6 col-sm-6 col-xs-12 temp-indicator"> {{ temp }}°C </div>\
-               <div class="col-md-6 col-sm-6 col-xs-12 indicator">\
-                 <span class="indicator"> {{ datenow }} </span>\
-                 <span class="indicator counter-indicator">+ {{ counter }} </span>\
-               </div>\
+  'template': '<div class="col-md-6 col-xs-8 col-sm-8">\
+               <span class="indicator"> {{ datenow }} </span>\
+               <span class="indicator counter-indicator">+ {{ counter }} </span>\
+               <span class="temp-indicator"> {{ temp }}°C </span>\
               </div>',
 });
 

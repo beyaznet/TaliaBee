@@ -6,26 +6,36 @@ Table of contents
 =================
 
 - [About](#about)
+- [Demo](#demo)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Interfaces](#interfaces)
     - [Web user interface](#web-user-interface)
     - [Application programming interface (API)](#application-programming-interface)
     - [Python interface](#python-interface)
+- [Contact](#contact)
+
+Demo
+====
+Visit our [online demo box](http://demo.taliabee.io/) to try TaliaBee.
 
 Requirements
 ============
 - [Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
 - [MedIOEx Controller Card](http://www.samm.com/en/medioex-raspberry-pi-industrial-controller-card)
 - [MedIOEx Switched-Mode Power Adaptor](http://www.samm.com/en/medioex-ms-4024-switched-mode-power-adaptor-24-volt-1-5-amper-smps)
-- [Raspbian Jessie](https://www.raspberrypi.org/downloads/raspbian/) (fresh installed recommended)
+- [Raspbian GNU/Linux](https://www.raspberrypi.org/downloads/raspbian/) (fresh installed recommended)
 
 Installation
 ============
+TaliaBee supports Raspbian Jessie and Raspbian Stretch. First, install [Raspbian GNU/Linux](https://www.raspberrypi.org/downloads/raspbian/). Then login as `pi` user and run the following commands:
+
 ```bash
 wget https://raw.githubusercontent.com/beyaznet/TaliaBee/master/installer/install.sh
 sudo bash install.sh
 ```
+
+TaliaBee is ready to go now.
 
 Interfaces
 ==========
@@ -69,3 +79,7 @@ TaliaBee provides a Python interface for Pythonistas too. [Python TaliaBeeIO Mod
 ```
 
 Please see [Python TaliaBeeIO Module](https://github.com/beyaznet/python-taliabeeio-module) project page for common usages.
+
+Contact
+=======
+[@TaliaBeeIO](https://www.twitter.com/taliabeeio) on [Twitter](https://www.twitter.com/taliabeeio)

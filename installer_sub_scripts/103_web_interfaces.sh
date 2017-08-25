@@ -70,10 +70,10 @@ cp -arp node_modules/lodash/* \
 
 npm install font-awesome@4
 mkdir -p /var/www/taliabee_web_interfaces/gui/app/static/font-awesome/{css,fonts}
-cp -arp node_modules/bootstrap-toggle/css/* \
-    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/css/
-cp -arp node_modules/bootstrap-toggle/fonts/* \
-    /var/www/taliabee_web_interfaces/gui/app/static/bootstrap-toggle/fonts/
+cp -arp node_modules/font-awesome/css/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/font-awesome/css/
+cp -arp node_modules/font-awesome/fonts/* \
+    /var/www/taliabee_web_interfaces/gui/app/static/font-awesome/fonts/
 
 chown pi:pi /var/www/taliabee_web_interfaces/gui -R
 

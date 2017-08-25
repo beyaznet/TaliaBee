@@ -2,38 +2,69 @@ html, body {
     height: 100%;
 }
 
-input[type="number"] {
-    text-align: right;
+.row > .col-md-6.col-xs-6 {
+    height: 100%;
     position: relative;
-    float: center;
+    float: left;
+}
+
+
+input[type="number"] {
+    position: relative;
+    float: right;
+    text-align: right;
+    margin-left: 2px;
+    width: 32%;
+    height: 5%;
     -moz-appearance: textfield;
+}
+
+.btn.btn-xs.btn-primary {
+    margin-bottom: 2px;
+    position: relative;
+    float: left;
 }
 
 input[type="text"] {
     background: #fff;
     border: none;
-    width: 100%;
+    /*outline: none;*/
+    text-align: left;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    margin-top: 3px;
+    /*margin-right: 4px;*/
+    /*margin-left: 4px;*/
+    position: relative;
+    float: right;
+    width: 60%;
 }
 
 input[type="text"]:hover {
     background: #eee;
 }
 
-input[type="text"]:disabled {
-    background: #fff;
-}
-
 .toggle {
     margin-bottom: 2px;
 }
 
+input[type="text"]:disabled {
+    background: #fff;
+}
 .analog-text {
     background: #fff;
     border: none;
-    width: 100%;
-    margin-bottom: 2px;
+    /*outline: none;*/
+    text-align: left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 3px;
+    width: 34%;
+    /*margin-right: 24px;*/
+    margin-left: 8px;
+    position: relative;
+    float: left;
 }
-
 .analog-text:hover {
     background: #eee;
 }
@@ -42,69 +73,81 @@ input[type="text"]:disabled {
     background: #fff;
 }
 
-.label-digital {
-    font-size: 18px;
+
+.bootstrap-switch{
     position: relative;
     float: left;
-    width: 50px;
-    margin-top: 3px;
+}
+
+.label {
+    font-size: 16px;
+    position: relative;
+    float: left;
+    width: 28%;
     margin-bottom: 2px;
 }
 
-.label-analog {
-    font-size: 18px;
-    position: relative;
-    float: left;
-    width: 60px;
+.label + input[type="text"] {
+    margin-top: 2px;
     margin-bottom: 2px;
+    /*text-align: left;*/
 }
 
 .indicator {
     font-size: 24px;
+    position: relative;
+    float: left;
 }
 
 .counter-indicator {
-    font-size: 24px;
     color: #f0ad4e;
+    margin-left: 8px;
+    margin-right: 24px;
 }
 
 .temp-indicator {
     font-size: 24px;
+    position: relative;
+    float: center;
     color: #811b0a;
 }
 
-.no-side-space {
-    padding-left: 2px;
-    padding-right: 2px;
-}
 
-.space-on-top {
-    padding-top: 6px;
-}
+*:not(input):not(textarea) {
+     -moz-user-select: -moz-none;
+     -khtml-user-select: none;
+     -webkit-user-select: none;
 
-.space-on-bottom {
-    padding-bottom: 8px;
 }
-
-#custom-body {
-    padding: 5px;
+#custom-header {
+    height: 20%;
 }
 
 #panel-body {
     height: 90px;
 }
 
-.panel-body {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+
+#custom-body {
+    height: calc(100% - 20%);
 }
 
-#page-header {
-   text-align: center; 
+#custom-footer {
+    height: 32px;
+    content: "beyaz.net";
+    position: relative;
+    float: left;
 }
 
+img {
+    position: relative;
+    float: right;
+}
+
+.pull-right {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
 .message-link, .message-link:hover {
     color: #333333;
     padding-right: 8px;
@@ -113,18 +156,6 @@ input[type="text"]:disabled {
 
 }
 
-img {
-    position: relative;
-    float: right;
-}
-
 a {
-    padding-right: 5px;
-}
-
-*:not(input):not(textarea) {
-     -moz-user-select: -moz-none;
-     -khtml-user-select: none;
-     -webkit-user-select: none;
-
+    padding-right: 2px;
 }
