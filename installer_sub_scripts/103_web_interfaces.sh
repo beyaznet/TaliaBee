@@ -24,7 +24,7 @@ apt-get $APT_PROXY_OPTION -y install apache2-utils
 apt-get $APT_PROXY_OPTION -y install npm
 
 # Python modules via pip3
-pip3 install flask
+pip3 install --upgrade flask
 
 # -----------------------------------------------------------------------------
 # WEB INTERFACES
