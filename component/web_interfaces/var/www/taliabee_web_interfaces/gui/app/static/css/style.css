@@ -2,69 +2,38 @@ html, body {
     height: 100%;
 }
 
-.row > .col-md-6.col-xs-6 {
-    height: 100%;
-    position: relative;
-    float: left;
-}
-
-
 input[type="number"] {
-    position: relative;
-    float: right;
     text-align: right;
-    margin-left: 2px;
-    width: 32%;
-    height: 5%;
-    -moz-appearance: textfield;
-}
-
-.btn.btn-xs.btn-primary {
-    margin-bottom: 2px;
     position: relative;
-    float: left;
+    float: center;
+    -moz-appearance: textfield;
 }
 
 input[type="text"] {
     background: #fff;
     border: none;
-    /*outline: none;*/
-    text-align: left;
-    padding-top: 4px;
-    padding-bottom: 2px;
-    margin-top: 3px;
-    /*margin-right: 4px;*/
-    /*margin-left: 4px;*/
-    position: relative;
-    float: right;
-    width: 60%;
+    width: 100%;
 }
 
 input[type="text"]:hover {
     background: #eee;
 }
 
+input[type="text"]:disabled {
+    background: #fff;
+}
+
 .toggle {
     margin-bottom: 2px;
 }
 
-input[type="text"]:disabled {
-    background: #fff;
-}
 .analog-text {
     background: #fff;
     border: none;
-    /*outline: none;*/
-    text-align: left;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin-top: 3px;
-    width: 34%;
-    /*margin-right: 24px;*/
-    margin-left: 8px;
-    position: relative;
-    float: left;
+    width: 100%;
+    margin-bottom: 2px;
 }
+
 .analog-text:hover {
     background: #eee;
 }
@@ -73,81 +42,69 @@ input[type="text"]:disabled {
     background: #fff;
 }
 
-
-.bootstrap-switch{
+.label-digital {
+    font-size: 18px;
     position: relative;
     float: left;
-}
-
-.label {
-    font-size: 16px;
-    position: relative;
-    float: left;
-    width: 28%;
+    width: 50px;
+    margin-top: 3px;
     margin-bottom: 2px;
 }
 
-.label + input[type="text"] {
-    margin-top: 2px;
+.label-analog {
+    font-size: 18px;
+    position: relative;
+    float: left;
+    width: 60px;
     margin-bottom: 2px;
-    /*text-align: left;*/
 }
 
 .indicator {
     font-size: 24px;
-    position: relative;
-    float: left;
 }
 
 .counter-indicator {
+    font-size: 24px;
     color: #f0ad4e;
-    margin-left: 8px;
-    margin-right: 24px;
 }
 
 .temp-indicator {
     font-size: 24px;
-    position: relative;
-    float: center;
     color: #811b0a;
 }
 
-
-*:not(input):not(textarea) {
-     -moz-user-select: -moz-none;
-     -khtml-user-select: none;
-     -webkit-user-select: none;
-
+.no-side-space {
+    padding-left: 2px;
+    padding-right: 2px;
 }
-#custom-header {
-    height: 20%;
+
+.space-on-top {
+    padding-top: 6px;
+}
+
+.space-on-bottom {
+    padding-bottom: 8px;
+}
+
+#custom-body {
+    padding: 5px;
 }
 
 #panel-body {
     height: 90px;
 }
 
-
-#custom-body {
-    height: calc(100% - 20%);
+.panel-body {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-#custom-footer {
-    height: 32px;
-    content: "beyaz.net";
-    position: relative;
-    float: left;
+#page-header {
+   text-align: center; 
 }
 
-img {
-    position: relative;
-    float: right;
-}
-
-.pull-right {
-    margin-bottom: 2px;
-    margin-top: 2px;
-}
 .message-link, .message-link:hover {
     color: #333333;
     padding-right: 8px;
@@ -156,6 +113,18 @@ img {
 
 }
 
+img {
+    position: relative;
+    float: right;
+}
+
 a {
-    padding-right: 2px;
+    padding-right: 5px;
+}
+
+*:not(input):not(textarea) {
+     -moz-user-select: -moz-none;
+     -khtml-user-select: none;
+     -webkit-user-select: none;
+
 }
