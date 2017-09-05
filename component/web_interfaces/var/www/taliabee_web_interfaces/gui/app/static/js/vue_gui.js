@@ -6,24 +6,26 @@ Vue.component('toggle', {
      };
   },
   'template': '<div class="no-side-space col-md-12 col-sm-12 col-xs-12">\
-	         <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-if="component.type == \'di\'">\
-	           <span class="label label-default label-digital" :readonly=disabled v-if="component.value == 0">Off</span>\
-	           <span class="label label-primary label-digital" :readonly=disabled v-else>On</span>\
-	         </div>\
-	         <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-else>\
+           <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-if="component.type == \'di\'">\
+             <span class="label label-default label-digital" :readonly=disabled v-if="component.value == 0">Off</span>\
+             <span class="label label-primary label-digital" :readonly=disabled v-else>On</span>\
+           </div>\
+           <div class="no-side-space col-md-4 col-sm-4 col-xs-4" v-else>\
                    <a v-on:click="onclick()">\
-	             <input type="checkbox" :checked="component.value" data-onstyle="warning" v-if="component.type == \'ro\'" >\
-	             <input type="checkbox" :checked="component.value" v-else>\
-	           </a>\
-	         </div>\
-	         <div class="no-side-space space-on-top col-md-8 col-sm-8 col-xs-8">\
+               <input type="checkbox" :checked="component.value" data-onstyle="warning" v-if="component.type == \'ro\'" >\
+               <input type="checkbox" :checked="component.value" v-else>\
+             </a>\
+           </div>\
+           <div class="no-side-space space-on-top col-md-8 col-sm-8 col-xs-8">\
                    <input type="text" v-model="component.name" v-if="this.$root.checked == true" disabled>\
-	           <input type="text" v-model="component.name" v-else>\
-	         </div>\
+             <input type="text" v-model="component.name" v-else>\
+           </div>\
                </div>',
   'watch': {
     'component': function() {
+    if (this.component.type === 'do' || this.component.type === 'ro') {
       this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
+    }
     }
   },
   'mounted': function() {
@@ -63,26 +65,26 @@ Vue.component('analog-toggle', {
   },
   'template': '<div class="no-side-space space-on-bottom col-md-12 col-xs-12 col-sm-12">\
                 <div class="no-side-space col-md-12 col-sm-12 col-xs-12">\
-	          <div class="no-side-space col-md-2 col-sm-2 col-xs-4">\
+            <div class="no-side-space col-md-2 col-sm-2 col-xs-4">\
                     <span class="label label-default label-analog">{{ component.value }}</span>\
-	          </div>\
-	          <div class="no-side-space space-on-top col-md-10 col-sm-10 col-xs-8">\
+            </div>\
+            <div class="no-side-space space-on-top col-md-10 col-sm-10 col-xs-8">\
                     <input class="analog-text" v-model="component.name" v-if="this.$root.checked == true" disabled >\
                     <input class="analog-text" v-model="component.name" v-else>\
-	          </div>\
+            </div>\
                 </div>\
                 <div class="no-side-space col-md-12 col-sm-12 col-xs-12" v-if="component.type == \'ao\'">\
-	          <div class="no-side-space space-on-top col-md-9 col-sm-9 col-xs-7">\
+            <div class="no-side-space space-on-top col-md-9 col-sm-9 col-xs-7">\
                     <input type="range" min="0" step="barValue" max="4095" v-model="barValue" class="no-spinner">\
-	          </div>\
-	          <div class="no-side-space col-md-2 col-sm-2 col-xs-3">\
+            </div>\
+            <div class="no-side-space col-md-2 col-sm-2 col-xs-3">\
                     <input type="number" class="form-control" min="0" max="4095" v-model="barValue">\
-	          </div>\
-	          <div class="no-side-space space-on-top col-md-1 col-sm-1 col-xs-2">\
+            </div>\
+            <div class="no-side-space space-on-top col-md-1 col-sm-1 col-xs-2">\
                     <button  v-on:click="onclick()" type="button" :class="is_active == true ? \'btn-primary\' : \'btn-default\'" :disabled=!is_active>\
                       <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\
                     </button>\
-	          </div>\
+            </div>\
                 </div>\
               </div>',
   'watch': {
@@ -130,7 +132,7 @@ var app = new Vue({
     'status':[],
     'name_list': {},
     'url': '/api/',
-    // 'url': 'http://172.22.9.23/api/',
+    // 'url': 'http://172.22.9.17/api/',
     'checked': true,
     'interval': null,
     'barValue': 0,

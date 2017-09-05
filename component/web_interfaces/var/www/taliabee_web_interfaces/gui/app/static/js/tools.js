@@ -10,8 +10,10 @@ function request(method, location, headers, data) {
 }
 
 function async_request(method, location, headers, data, on_success, on_failed) {
-  var r = new XMLHttpRequest();
+  let r = new XMLHttpRequest();
   r.open(method, location);
+  r.timeout = 10000;
+  r.ontimeout = on_failed;
   header_keys = Object.keys(headers);
   for (var i = header_keys.length - 1; i >= 0; i--) {
     r.setRequestHeader(header_keys[i], headers[header_keys[i]]);
