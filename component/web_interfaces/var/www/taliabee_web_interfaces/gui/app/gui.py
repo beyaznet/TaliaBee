@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from app.storage.data import update_data_name, load_data
 from config import API_URL
 import requests
@@ -46,6 +46,9 @@ def update_name():
 
     for data_type, value in type_dict.items():
         for data in request.json[data_type]:
-            update_data_name(value, data_type, data['id'], data['name'])
+            try:
+                update_data_name(value, data_type, data['id'], data['name'])
+            except:
+                abort(400)
 
     return jsonify({'status': 'OK'})
