@@ -12,11 +12,5 @@ app.register_blueprint(gui)
 
 
 @app.route('/')
-# @requires_auth
 def index():
     return render_template('index.html')
-
-
-@app.route('/a')
-def a():
-    return render_template('asd.html')

@@ -1,7 +1,5 @@
 import json
-# from pprint import pprint
 from config import DATA_PATH
-# DATA_PATH = 'data.json'
 
 
 def load_data():
@@ -23,4 +21,3 @@ def update_data_name(component, data_type, pin, name):
 
     with open(DATA_PATH, 'w') as f:
         json.dump(data, f, indent=2, sort_keys=True)
-

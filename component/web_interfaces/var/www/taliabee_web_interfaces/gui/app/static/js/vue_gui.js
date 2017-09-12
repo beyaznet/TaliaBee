@@ -24,7 +24,7 @@ Vue.component('toggle', {
   'watch': {
     'component': function() {
     if (this.component.type === 'do' || this.component.type === 'ro') {
-      this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
+      this.toggleobject.bootstrapToggle(this.component.value == 1 ? 'on' : 'off');
     }
     }
   },
@@ -35,7 +35,7 @@ Vue.component('toggle', {
   },
   'methods': {
     'onclick': function() {
-      if (this.component.value === 0) {
+      if (this.component.value == 0) {
         method = 'set';
       } else {
         method = 'reset';
@@ -47,7 +47,7 @@ Vue.component('toggle', {
           }
         },
         r => {
-          this.toggleobject.bootstrapToggle(this.component.value === 1 ? 'on' : 'off');
+          this.toggleobject.bootstrapToggle(this.component.value == 1 ? 'on' : 'off');
         });
     }
   }
@@ -94,7 +94,7 @@ Vue.component('analog-toggle', {
     }
   },
   'methods': {
-    'onclick': function(data) {
+    'onclick': function() {
       this.is_active = false;
       if (0 <= parseInt(this.barValue) && parseInt(this.barValue) < 4096) {
         async_request('GET', this.$root.url + this.component.type + '/' + this.component.id + '/' +  'write?val=' + parseInt(this.barValue) , [], null,
@@ -159,7 +159,7 @@ var app = new Vue({
   'methods': {
     'tick': function() {
       this.counter += 1;
-      if ( this.counter > 0 && this.counter % this.current_interval === 0 && this.checked == true) {
+      if ( this.counter > 0 && this.counter % this.current_interval == 0 && this.checked == true) {
         this.get_status();
       }
     },
@@ -196,7 +196,6 @@ var app = new Vue({
 
     },
     'get_names': function() {
-      // document.getElementById("refresh_button").disabled = false;
       application = this;
       async_request('GET', '/gui/data',  [], null, function (response) {
         application.name_list = JSON.parse(response).data_list;
@@ -228,9 +227,9 @@ var app = new Vue({
       }
     },
     'update_name_onclick': function() {
-        data = JSON.stringify(this.status);
-        request('POST', '/gui/update', [['Content-Type', 'application/json']], data);
-        this.checked = true;
+      data = JSON.stringify(this.status);
+      request('POST', '/gui/update', [['Content-Type', 'application/json']], data);
+      this.checked = true;
     },
     'interval_refresh_onclick': function(interval) {
       this.current_interval = interval;

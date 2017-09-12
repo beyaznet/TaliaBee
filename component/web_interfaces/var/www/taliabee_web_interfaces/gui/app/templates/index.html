@@ -38,8 +38,8 @@
             </div>
           </div>
           <div class="no-side-space col-md-6 col-sm-6 col-xs-6">
-                <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default pull-right' : 'glyphicon glyphicon-ok btn btn-danger pull-right'"></button>
-                <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default pull-right" title="Reset"></button>
+            <button v-on:click="update_checked()" type="button" :class="checked == true ? 'glyphicon glyphicon-lock btn btn-default pull-right' : 'glyphicon glyphicon-ok btn btn-danger pull-right'"></button>
+            <button v-on:click="reset_onclick()" type="button" class="glyphicon glyphicon-remove btn btn-default pull-right" title="Reset"></button>
           </div>
         </div>
       </div>
@@ -47,29 +47,29 @@
 
     <div id="custom-body" class="col-md-12 col-sm-12 col-xs-12">
       <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="panel panel-default">
-              <div class="panel-heading"><strong>Digital Input</strong></div>
-              <div class="panel-body">
-                      <toggle v-for="component in status_ordered['di']" :disabled="true" :component="component"></toggle>
-              </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Digital Input</strong></div>
+          <div class="panel-body">
+            <toggle v-for="component in status_ordered['di']" :disabled="true" :component="component"></toggle>
           </div>
+        </div>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="panel panel-default">
-              <div class="panel-heading"><strong>Digital Output</strong></div>
-              <div class="panel-body">
-                  <toggle v-for="component in status_ordered['do']"  :disabled="false" :component.sync="component"></toggle>
-                  <toggle v-for="component in status_ordered['ro']" :disabled="false" :component="component"></toggle>
-              </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Digital Output</strong></div>
+          <div class="panel-body">
+            <toggle v-for="component in status_ordered['do']"  :disabled="false" :component.sync="component"></toggle>
+            <toggle v-for="component in status_ordered['ro']" :disabled="false" :component="component"></toggle>
           </div>
+        </div>
       </div>
       <div class="col-md-6 col-sm-12 col-xs-12">
-          <div class="panel panel-default">
-              <div class="panel-heading"><strong>Analog Input</strong></div>
-              <div class="panel-body">
-                  <analog-toggle v-for="component in status_ordered['ai']" :disabled="true" :component="component" ></analog-toggle>
-              </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Analog Input</strong></div>
+          <div class="panel-body">
+            <analog-toggle v-for="component in status_ordered['ai']" :disabled="true" :component="component" ></analog-toggle>
           </div>
+        </div>
       </div>
       <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-default">
@@ -86,14 +86,14 @@
         <div class="no-side-space col-md-12 col-sm-12 col-xs-12">
           <strong>All rights are wonderful.</strong>
           <a href="http://www.beyaz.net/" target="_blank"> &copy;beyaz.net  </a> <br>
-	</div>
+	      </div>
         <div class="no-side-space col-md-12 col-sm-12 col-xs-12">
           <a class="message-link" v-on:click="alert_message_onclick()"><strong >Contact us : </strong></a>
           <a href="https://about.me/ulkubayraktar" target="_blank" title="ulkubayraktar"><span class="fa fa-link"></span></a>
           <a href="https://about.me/nejdetyucesoy" target="_blank" title="nejdetyucesoy"><span class="fa fa-link"></span></a>
           <a href="https://github.com/beyaznet/TaliaBee/" target="_blank" title="TaliaBee"><span class="fa fa-github"></span></a>
           <a href="https://twitter.com/taliabeeio" target="_blank" title="TaliabeeIO"><span class="fa fa-twitter"></span></a>
-	</div>
+	      </div>
       </div>
 
       <div class="no-side-space col-md-4 col-sm-4 col-xs-4">
