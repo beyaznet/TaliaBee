@@ -18,11 +18,8 @@ echo "-------------------------- ZIGBEE --------------------------"
 # -----------------------------------------------------------------------------
 # PACKAGES
 # -----------------------------------------------------------------------------
-apt-get $APT_PROXY_OPTION -y install sqlite3
-apt-get $APT_PROXY_OPTION -y install python3-cryptography
-
 # Python modules via pip3
-pip3 install pyserial sqlalchemy
+pip3 install taliabeez
 
 # -----------------------------------------------------------------------------
 # ZIGBEE
@@ -39,12 +36,6 @@ mkdir -p /home/pi/zigbee_interface
 rsync -aChu home/pi/zigbee_interface/ /home/pi/zigbee_interface/
 chown pi:pi /home/pi/zigbee_interface/ -R
 chmod u+x /home/pi/zigbee_interface/run.py
-
-# zigbee KEY and ME
-sed -i "s/^ME\s*=.*$/ME = '$ZIGBEE_ME'/" /home/pi/zigbee_interface/config.py
-sed -i "s/^KEY\s*=.*$/KEY = b'$ZIGBEE_KEY'/" /home/pi/zigbee_interface/config.py
-sed -i "s/^API_BASE_URL\s*=.*$/API_BASE_URL = 'http:\/\/127.0.0.1\/api'/" \
-    /home/pi/zigbee_interface/config.py
 
 # systemd service
 cp etc/systemd/system/zigbee_interface.service /etc/systemd/system/
