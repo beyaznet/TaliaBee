@@ -96,7 +96,9 @@ do
 	do
 	    V=$(($i % 2))
 	    curl -s "http://127.0.0.1/api/ro/13/write?val=$V"
-	    curl -s "http://127.0.0.1/api/do/4/write?val=$V"
+	    curl -s "http://127.0.0.1/api/ro/14/write?val=$V"
+	    curl -s "http://127.0.0.1/api/ro/15/write?val=$V"
+	    curl -s "http://127.0.0.1/api/ro/16/write?val=$V"
 	    sleep 0.25
 	done
 done

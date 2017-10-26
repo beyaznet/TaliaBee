@@ -86,7 +86,9 @@ try:
         for i in range(20):
             v = i % 2
             io.ro_write(13, v)
-            io.do_write(4, v)
+            io.ro_write(14, v)
+            io.ro_write(15, v)
+            io.ro_write(16, v)
             sleep(0.25)
 except KeyboardInterrupt:
     io.reset()
