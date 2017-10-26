@@ -128,7 +128,7 @@ var app = new Vue({
     'temperature': '',
     'datenow': '',
     'current_interval': 10,
-    'intervals': [10, 15, 30, 60],
+    'intervals': [5, 10, 15, 30, 60],
     'status':[],
     'name_list': {},
     'url': '/api/',
