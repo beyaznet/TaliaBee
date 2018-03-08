@@ -21,8 +21,6 @@ if [ "$RUN_ZIGBEE" = true ]
 then
 	echo 'ZIGBEE INTERFACE'
 	echo "------------------------------------------------"
-	echo -n "Zigbee ID (ME)       : "
-	echo $ZIGBEE_ME
 	echo -n "Zigbee Key (KEY)     : "
 	echo $ZIGBEE_KEY
 	echo

@@ -18,7 +18,6 @@ export GIT_LOCAL_DIR="TaliaBee"
 export RELEASE="Raspbian GNU/Linux"
 export BASEDIR=`pwd`
 
-export ZIGBEE_ME=1000
 export ZIGBEE_KEY="maeLDoKjSOJQjT09t4MG24hMZxhiy66KqOEkFJFaWV4="
 export PI_PASSWORD="raspberry"
 

@@ -1,0 +1,16 @@
+[Unit]
+Description=Zigbee Interface
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+ExecStart=/home/pi/zigbee_interface/run.py
+KillMode=process
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target
