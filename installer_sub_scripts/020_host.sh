@@ -61,4 +61,4 @@ apt-get $APT_PROXY_OPTION -y install wget curl rsync jq
 apt-get $APT_PROXY_OPTION --install-recommends -y install python3-pip
 
 # pip3 upgrade
-pip3 install --upgrade pip setuptools
+pip3 install --upgrade setuptools
