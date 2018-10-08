@@ -4,27 +4,6 @@ Zigbee is a low-cost, low-power, wireless mesh network standard targeted at the
 wide development of long battery life devices in wireless control and
 monitoring applications.
 
-
-ZIGBEE KEY
-==========
-Zigbee paketlerini şifrelemek için anahtar kullanılmaktadır. Aynı ağdaki bütün
-Zigbee interface kurulumlarında aynı KEY değeri kullanılmalıdır. KEY değerini
-üretmek için "python3-cryptography" paketi kurulduktan sonra Python3 konsoldan
-aşağıdaki komutlar çalıştırılır:
-
->>> from cryptography.fernet import Fernet
->>> Fernet.generate_key()
-b'maeLDoKjSOJQjT09t4MG24hMZxhiy66KqOEkFJFaWV4='
-
-Oluşturulan KEY, kurulumu başlatmadan önce "taliabee.conf" dosyasına
-"ZIGBEE_KEY" değeri olarak yazılır:
-
-    export ZIGBEE_KEY="maeLDoKjSOJQjT09t4MG24hMZxhiy66KqOEkFJFaWV4="
-
-Kurulum sonrasında bu değer değiştirilmek istenirse
-"/home/pi/zigbee_interface/config.py" dosyasındaki "KEY" değerinin
-güncellenmesi gerekir.
-
 ---
 
 XCTU
