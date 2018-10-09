@@ -27,8 +27,8 @@ pip3 install taliabeez
 # doc
 mkdir -p ~/doc
 cp $BASEDIR/$GIT_LOCAL_DIR/doc/zigbee.md ~/doc/
-cp profiles/profile_20A7.xml ~/doc/
-cp profiles/profile_22A7.xml ~/doc/
+cp profiles/custom_profile_21A7.xml ~/doc/
+cp profiles/custom_profile_23A7.xml ~/doc/
 
 # zigbee interface
 rm -rf /home/pi/zigbee_interface

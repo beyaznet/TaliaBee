@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+  <profile>
+    <profile_version>1</profile_version>
+    <description_file>xbee_zb/XBP24-ZB_23A7_S2B.xml</description_file>
+    <flash_fw_action>1</flash_fw_action>
+    <reset_settings>true</reset_settings>
+    <settings>
+      <setting command="ID">12345678</setting>
+      <setting command="JV">1</setting>
+      <setting command="DL">FFFF</setting>
+      <setting command="BD">7</setting>
+      <setting command="AO">1</setting>
+    </settings>
+  </profile>
+</data>
