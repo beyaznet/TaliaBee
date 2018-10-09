@@ -12,71 +12,120 @@ Zigbee modülü ayarlamak için bu yazılıma ihtiyaç vardır.
 
 ### Download link
 https://www.digi.com/products/xbee-rf-solutions/xctu-software/xctu
-http://ftp1.digi.com/support/utilities/40002881_redirect.htm
+    -> Download XCTU
+    -> XCTU v. 6.4.1.7 Linux x64 (64bit Linux için...)
 
 ### Local download link
-http://172.22.9.204/taliabee/40002881_J.run   # ibm306 makinesi
+http://172.22.9.204/taliabee/40002881_S.run   # ibm306 makinesi
 http://172.22.9.204/taliabee/zigbee_xctu.run  # son surume linkli
+http://172.22.9.204/taliabee/legacy_fw.zip    # legacy firmwares
 
 ### XCTU-NG kurulum
-mkdir ~/Desktop
-chmod u+x 40002881_J.run
-./40002881_J.run
-    /home/kullanici_adi/digi  # kurulum klasoru
+Masaüstü açıkken konsol açılıp normal kullanıcı hesabı ile kurulum yapılır.
 
-### info
-vim /home/kullanici_adi/digi/XCTU-NG/radio_firmwares/xbee_zb/xbee_zb.txt
+```bash
+mkdir -p ~/Desktop
+wget -O /tmp/40002881_S.run http://172.22.9.204/taliabee/40002881_S.run
+chmod u+x /tmp/40002881_S.run
+
+rm -rf /tmp/xctung
+rm /tmp/bitrock_installer*
+/tmp/40002881_S.run --installdir ~/digi
+```
+
+### XCTU-NG kaldırma
+Desktop açıkken konsoldan
+
+```bash
+~/digi/XCTU-NG/uninstall
+```
 
 ### Ayarlar
-Seri port erişimi için kullanıcıyı "dialout" grubuna eklemek gerekiyor. Ayarın
-aktif hale gelebilmesi için yeniden login olmak gerekli.
+Seri port erişimi için kullanıcıyı **dialout** grubuna eklemek gerekiyor.
+Ayarın aktif hale gelebilmesi için yeniden login olmak gerekli.
 
+```bash
 su -l
 adduser kullanici_adi dialout
+```
 
 ### Grafik ortamda çalıştırma
+/tmp klasöründe yeterince yer olduğunu ve ```/tmp/xctung``` klasörüne
+yazabildiğini kontrol et. Çalıştırmak için path
+
+```bash
 ~/digi/XCTU-NG/app
+```
 
-    ID - PAN ID -> Koordinator cihazdaki PAN ID, router cihazlara set edilecek.
-    NI - Node Identifier -> Cihazlara isim vermek istenirse kullanılabilir.
-    DL - Destination Address Low -> Router cihazlarda her yerden paket
-                                    alabilsin diye 'FFFF' yapılıyor.
+- İlk açılışta güncellemelerin tamamlanmasını bekle.
+- XCTU -> Preferences -> Automatic Updates -> False
+                       -> Radio Firmware Library -> False
+- Tools -> Firmware Explorer -> Can't find your firmware? Click Here
+        -> Install firmware from file (eğer legacy_fw.zip dosyası varsa)
+        -> Install legacy firmware package
 
-### profile_20A7.xml
-Koorinatör profili. Default ayarlı koordinatör Zigbee cihazdan profil alınarak
-oluşturulur.
-    ID : 0 -> X     # rastgele tam sayi, butun cihazlarda aynı olmalı
-                    # Zigbee agina, disaridan erisimi engellemek için gerekli.
+Coordinator Zigbee
+==================
+Master makineye bağlı olan zigbee.  Giden paketler için ana makineye bir tane
+takılı olacak.
 
-### profile_22A7.xml
-Router profili. Default ayarlı router Zigbee cihazdan profil alınarak
-oluşturulur.
+### Coordinator profile oluşturma
+- XCTU -> Discover Radio Modules -> Default seçenekler uygun
+- Tools -> Working modes -> Configuration Working mode
+- Tools -> Firmware Explorer -> XBP24BZ7 - Zigbee Coordinator API - 21A7 (newest)
+
     ID : 0 -> X     # rastgele tam sayi, butun cihazlarda aynı olmalı.
                     # Zigbee agina, disaridan erisimi engellemek için gerekli.
+    DL : 0 -> FFFF  # Gelen tüm paketleri alabilmesi için gerekli.
+    EE : Disabled   # Gelen paketleri izleyebilmek için ağ güvenliği
+                    # devredışı bırakılmalı.
+    BD : 9600 -> 115200
+    AO : Explicit   # API çıktılarını rx_explicit data formatında almak
+                    # alabilmek için bütün cihazlarda bu şekilde düzenlenmeli.
+
+- Write
+
+- Working modes -> Network Working mode -> Scan
+  Test için... Modulun bulunması lazım.
+
+### Konsoldan coordinator profile yükleme
+```bash
+~/digi/XCTU-NG/XCTUcmd update_firmware -v -p /dev/ttyUSB0 -b 9600 \
+    -f ~/digi/XCTU-NG/radio_firmwares/xbee_zb/XBP24-ZB_21A7_S2B.xml
+~/digi/XCTU-NG/XCTUcmd load_profile  -v -p /dev/ttyUSB0 -b 9600 \
+    -f custom_profile_23A7.xml
+```
+
+Router Zigbee
+=============
+Sahadaki makinelere bağlı olan zigbee.
+
+### Router profile oluşturma
+- XCTU -> Discover Radio Modules -> Default seçenekler uygun
+- Tools -> Firmware Explorer -> XBP24BZ7 - Zigbee Router API - 23A7 (newest)
+
+    ID : 0 -> X     # rastgele tam sayi, butun cihazlarda aynı olmalı.
+                    # Zigbee agina, disaridan erisimi engellemek için gerekli.
+    JV : Enabled    # Router'ın doğru kanalı seçebilmesi için gerekli.
     DL : 0 -> FFFF  # yönlendirilen paketleri alabilmesi için gerekli.
                     # sadece koordinatörden alacaksa 0 kalacak.
+    EE : Disabled   # Gelen paketleri izleyebilmek için ağ güvenliği
+                    # devredışı bırakılmalı.
+    BD : 9600 -> 115200
+    AP : 1          # API Modunu etkinleştirmek için bütün cihazlarda
+                    # değiştirilmeli.
+    AO : Explicit   # API çıktılarını rx_explicit data formatında almak
+                    # alabilmek için bütün cihazlarda bu şekilde düzenlenmeli.
 
-### Koordinatör Zigbee kurulumu
-20A7 - ZigBee Coordinator AT
-radio_firmwares/xbee_zb/XBP24-ZB_20A7_S2B.xml
-radio_firmwares/xbee_zb/XBP24-ZB_20A7_S2B.ehx2
+- Write
 
-Giden paketler için ana makineye bir tane takılı olacak.
+- Working modes -> Network Working mode -> Scan
+  Test için... Modulun bulunması lazım.
 
-cd ~/digi/XCTU-NG
-./XCTUcmd update_firmware -f radio_firmwares/xbee_zb/XBP24-ZB_20A7_S2B.xml \
-    -v -p /dev/ttyUSB0
-./XCTUcmd load_profile -f profile_20A7.xml -v -p /dev/ttyUSB0
-
-### Router Zigbee kurulumu
-22A7 - ZigBee Router AT
-radio_firmwares/xbee_zb/XBP24-ZB_22A7_S2B.xml
-radio_firmwares/xbee_zb/XBP24-ZB_22A7_S2B.ehx2
-
-Raspberry Pi cihazlara ve dönen paketler için ana makineye birer tane takılı
-olacak.
-
-cd ~/digi/XCTU-NG
-./XCTUcmd update_firmware -f radio_firmwares/xbee_zb/XBP24-ZB_22A7_S2B.xml \
-    -v -p /dev/ttyUSB0
-./XCTUcmd load_profile -f profile_22A7.xml -v -p /dev/ttyUSB0
+### Konsoldan router profile yükleme
+```bash
+~/digi/XCTU-NG/XCTUcmd update_firmware -v -p /dev/ttyUSB0 -b 9600 \
+    -f ~/digi/XCTU-NG/radio_firmwares/xbee_zb/XBP24-ZB_23A7_S2B.xml
+~/digi/XCTU-NG/XCTUcmd load_profile  -v -p /dev/ttyUSB0 -b 9600 \
+    -f custom_profile_23A7.xml
+```
