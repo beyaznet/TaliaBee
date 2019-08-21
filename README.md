@@ -28,7 +28,7 @@ Requirements
 
 Installation
 ============
-TaliaBee supports Raspbian Jessie and Raspbian Stretch. First, install [Raspbian GNU/Linux](https://www.raspberrypi.org/downloads/raspbian/). Then login as `pi` user and run the following commands:
+TaliaBee supports Raspbian Buster. First, install [Raspbian GNU/Linux](https://www.raspberrypi.org/downloads/raspbian/). Then login as `pi` user and run the following commands:
 
 ```bash
 wget https://raw.githubusercontent.com/beyaznet/TaliaBee/master/installer/install.sh
